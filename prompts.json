@@ -13,22 +13,173 @@
     { "title": "Define Term", "prompt": "Provide a clear and concise definition for the term '{term}' in the context of {field_or_context}.", "language": "text" },
     { "title": "Check Grammar & Style", "prompt": "Review the following text for grammatical errors, spelling mistakes, and awkward phrasing. Suggest improvements for clarity and flow:\n\n{text_to_review}", "language": "text" }
   ],
+  "productivity_work_mgmt": [
+    { "title": "Prioritize To-Do List", "prompt": "Help me create a prioritized to-do list based on these tasks: [list tasks]. Task A is due by [time], Task B requires [resource], and Task C impacts [stakeholder].", "language": "text" },
+    { "title": "Weekly Schedule Template", "prompt": "Create a weekly schedule template that balances my work priorities, personal commitments, and health goals.", "language": "text" },
+    { "title": "Project Decision Matrix", "prompt": "Design a decision matrix to help me evaluate which of these projects I should tackle first: [list projects with brief descriptions].", "language": "text" },
+    { "title": "Time-Blocking Strategy", "prompt": "Suggest a time-blocking strategy for my workday that accounts for deep work, meetings, and administrative tasks.", "language": "text" },
+    { "title": "Weekly Review Template", "prompt": "Generate a template for a weekly review process to evaluate my productivity and adjust my systems.", "language": "text" },
+    { "title": "Meeting Agenda Creation", "prompt": "Create an agenda for a 60-minute [team/client] meeting focused on [topic]. Include time allocations for each section.", "language": "text" },
+    { "title": "Brainstorming Discussion Questions", "prompt": "Generate a list of open-ended questions to stimulate discussion during our brainstorming session on [topic].", "language": "text" },
+    { "title": "Meeting Action Item Framework", "prompt": "Design a framework for capturing action items and decisions during meetings to ensure follow-through.", "language": "text" },
+    { "title": "Difficult Conversation Facilitation", "prompt": "Suggest strategies for facilitating a difficult conversation about [topic] during our upcoming team meeting.", "language": "text" },
+    { "title": "Pre-Meeting Checklist", "prompt": "Create a pre-meeting checklist to ensure all participants come prepared and meetings are efficient.", "language": "text" }
+  ],
+  "analytics_data_insights": [
+    { "title": "Identify KPIs", "prompt": "Identify the top 5 KPIs for [industry/field] and explain their significance to business performance.", "language": "text" },
+    { "title": "SQL Metric Calculation", "prompt": "Provide SQL queries to calculate [specific metrics] from a standard database schema.", "language": "sql" },
+    { "title": "Customer Segmentation Model", "prompt": "Design a customer segmentation model using [available data points]. What insights can we derive?", "language": "text" },
+    { "title": "Funnel Analysis", "prompt": "Create a funnel analysis for [specific process]. Where are the major drop-off points?", "language": "text" },
+    { "title": "Predictive Model Development", "prompt": "Develop a predictive model for [business outcome]. What variables are most influential?", "language": "text" },
+    { "title": "Effective Data Visualization Methods", "prompt": "Suggest the most effective data visualization methods to represent [type of data] for [target audience].", "language": "text" },
+    { "title": "Monthly Performance Dashboard Template", "prompt": "Create a template for a monthly performance dashboard that tracks [key metrics].", "language": "text" },
+    { "title": "Presenting Complex Data Insights", "prompt": "Design a framework for presenting complex data insights to non-technical stakeholders.", "language": "text" },
+    { "title": "Narrate Data Trend Story", "prompt": "Generate a script for narrating the story behind this trend in our [specific metric].", "language": "text" },
+    { "title": "Competitive Analysis Report Methodology", "prompt": "Develop a methodology for a competitive analysis report in the [industry] sector.", "language": "text" }
+  ],
+  "writing_content_creation": [
+    { "title": "Article Outline Generation", "prompt": "Generate an outline for a comprehensive article about [topic], focusing on [specific aspects].", "language": "text" },
+    { "title": "Engaging Headline Generation", "prompt": "Create a list of 10 engaging headlines for an article about [topic] that would appeal to [target audience].", "language": "text" },
+    { "title": "Blog Hook and Conclusion", "prompt": "Suggest a hook and conclusion for my blog post about [topic] that creates a cohesive narrative.", "language": "text" },
+    { "title": "Blog Content Calendar", "prompt": "Develop a content calendar for a blog focusing on [industry/topic] with themes for the next three months.", "language": "text" },
+    { "title": "Rewrite Paragraph for Engagement", "prompt": "Rewrite this paragraph to make it more engaging while maintaining its informational value: [paragraph].", "language": "text" },
+    { "title": "LinkedIn Post Ideas", "prompt": "Generate 5 LinkedIn post ideas for sharing insights about [industry trend].", "language": "text" },
+    { "title": "Twitter Promotion Series", "prompt": "Create a week's worth of Twitter posts promoting [product/service/event] without being repetitive.", "language": "text" },
+    { "title": "Instagram Caption Suggestions", "prompt": "Suggest captions for Instagram that would accompany photos of [subject] and resonate with [target audience].", "language": "text" },
+    { "title": "Social Media Storytelling Framework", "prompt": "Develop a storytelling framework for a series of social media posts about our company's journey.", "language": "text" },
+    { "title": "Repurpose Content for Social Media", "prompt": "Create a template for repurposing long-form content into social media snippets.", "language": "text" }
+  ],
+  "email_communication": [
+    { "title": "Newsletter Subject Lines", "prompt": "Give me 10 subject lines for my [niche] newsletter.", "language": "text" },
+    { "title": "Promotional Email Body Copy", "prompt": "Write the body copy for a promotional email with the subject line: [Your subject line].", "language": "text" },
+    { "title": "Follow-up Email Body Copy", "prompt": "Write a follow-up email with the subject line: [Your subject line].", "language": "text" },
+    { "title": "Re-engage Inactive Subscribers", "prompt": "How can I re-engage inactive subscribers on my email list?", "language": "text" },
+    { "title": "Email A/B Testing Strategy", "prompt": "How can I use A/B testing to find out the best time to send my emails (and the best frequency)?", "language": "text" },
+    { "title": "Translate Email", "prompt": "Translate this email into [language] please. Keep the tone [friendly] and write it like a native.", "language": "text" },
+    { "title": "Diplomatic Response to Colleague", "prompt": "Draft a diplomatic response to this challenging email from a colleague: [email content].", "language": "text" },
+    { "title": "Constructive Feedback Template", "prompt": "Create a template for providing constructive feedback to a team member about [specific issue].", "language": "text" },
+    { "title": "Negotiation Talking Points", "prompt": "Generate talking points for a negotiation about [topic] where my primary goal is [objective].", "language": "text" },
+    { "title": "Professional Introduction Email", "prompt": "Write a professional introduction email connecting two colleagues who could benefit from knowing each other.", "language": "text" },
+    { "title": "Communicate Project Delays", "prompt": "Develop a framework for communicating project delays to stakeholders that maintains trust.", "language": "text" }
+  ],
+  "ux_ui_design": [
+    { "title": "Generate UI Design Requirements", "prompt": "Generate examples of UI design requirements for a [mobile app].", "language": "text" },
+    { "title": "Typography Style Guide", "prompt": "Generate a typography style guide for a [mobile application] in excel format.", "language": "text" },
+    { "title": "Burger Menu UI Cases", "prompt": "What are the UI cases that need to be considered when designing a [burger menu].", "language": "text" },
+    { "title": "Competitor Analysis from Reviews", "prompt": "Generate a sample report of a competitor's [product] by using online customer reviews. For the sake of this analysis, we will focus on product usability.", "language": "text" },
+    { "title": "User Onboarding Flow Design", "prompt": "Design a user onboarding flow for a [fintech app]. What key steps and information should be included to build trust and engagement?", "language": "text" },
+    { "title": "Suggest Micro-interactions", "prompt": "Suggest micro-interactions to enhance user engagement on a [type of website/app].", "language": "text" },
+    { "title": "Heuristic Evaluation Framework", "prompt": "Create a framework for conducting a heuristic evaluation of a [type of digital product].", "language": "text" },
+    { "title": "User Persona Templates", "prompt": "Develop persona templates for the primary users of a [type of service].", "language": "text" },
+    { "title": "User Interview Questions (Pain Points)", "prompt": "Generate a list of questions for user interviews to better understand pain points in [specific process].", "language": "text" },
+    { "title": "User Journey Map Template", "prompt": "Design a user journey map template for a customer purchasing [product/service].", "language": "text" }
+  ],
+  "customer_service": [
+    { "title": "Draft Empathetic Response (Complaint)", "prompt": "Draft an empathetic response to a customer complaint regarding {issue (e.g., late delivery, product defect)}. Acknowledge the problem, apologize, and outline the next step.", "language": "text" },
+    { "title": "Draft Response (Inquiry)", "prompt": "Draft a clear and helpful response to a customer inquiry asking about {question (e.g., product features, return policy, how to use a feature)}.", "language": "text" },
+    { "title": "De-escalation Phrases", "prompt": "Suggest 5 phrases that can be used in customer service to help de-escalate a situation with an upset customer.", "language": "text" },
+    { "title": "Handle Frustrated Customer (Damaged Product)", "prompt": "Craft a script for handling a frustrated customer who received a damaged product. How can we turn this negative experience into a positive one?", "language": "text" },
+    { "title": "Troubleshooting Decision Tree", "prompt": "Design a decision tree for troubleshooting common issues with [product/service]. What questions should we ask to quickly identify the problem?", "language": "text" },
+    { "title": "Customer Follow-up Template", "prompt": "Create a template for following up with customers after resolving their issues. How can we ensure they're satisfied and encourage feedback?", "language": "text" },
+    { "title": "Proactive Customer Service Questions", "prompt": "Develop a list of proactive questions to ask customers to prevent potential issues before they arise. What can we anticipate?", "language": "text" },
+    { "title": "Social Media Customer Service Responses", "prompt": "Write a series of responses for social media customer service interactions. How can we maintain our brand voice while addressing concerns publicly?", "language": "text" },
+    { "title": "Customer Feedback Survey Design", "prompt": "Design a customer feedback survey that provides actionable insights. What questions will help us improve our service?", "language": "text" },
+    { "title": "Analyze Customer Feedback Framework", "prompt": "Create a framework for analyzing customer feedback and identifying patterns.", "language": "text" },
+    { "title": "Implement Customer Suggestions Strategy", "prompt": "Develop a strategy for implementing customer suggestions and communicating changes back to them.", "language": "text" },
+    { "title": "Quarterly Customer Satisfaction Report", "prompt": "Generate a template for a quarterly customer satisfaction report that highlights trends and opportunities.", "language": "text" },
+    { "title": "Customer Loyalty Program Structure", "prompt": "Design a loyalty program structure that rewards customer engagement and feedback.", "language": "text" }
+  ],
+  "healthcare_medical": [
+    { "title": "Differential Diagnosis Checklist", "prompt": "Generate a differential diagnosis checklist for a patient presenting with [symptoms].", "language": "text" },
+    { "title": "Patient Education Handout", "prompt": "Create a patient education handout explaining [medical condition] in simple, non-technical language.", "language": "text" },
+    { "title": "Medication Understanding Assessment Questions", "prompt": "Develop a list of questions to assess a patient's understanding of their newly prescribed medication.", "language": "text" },
+    { "title": "Treatment Options Decision Support Tool", "prompt": "Design a decision support tool for evaluating treatment options for [medical condition] based on patient factors.", "language": "text" },
+    { "title": "Patient Progress Monitoring Framework", "prompt": "Generate a framework for monitoring and documenting patient progress for [chronic condition].", "language": "text" },
+    { "title": "Stay Updated with Medical Research", "prompt": "Suggest a structured approach to staying updated with the latest research in [medical specialty].", "language": "text" },
+    { "title": "Present Complex Patient Case Template", "prompt": "Create a template for presenting a complex patient case during medical rounds.", "language": "text" },
+    { "title": "Shift Handoff Checklist", "prompt": "Develop a checklist for effective handoffs between healthcare providers during shift changes.", "language": "text" },
+    { "title": "Multidisciplinary Team Discussion Questions", "prompt": "Generate a list of questions to facilitate a multidisciplinary team discussion about a complex patient.", "language": "text" },
+    { "title": "Quality Improvement Initiative Framework", "prompt": "Design a framework for a quality improvement initiative addressing [healthcare issue].", "language": "text" }
+  ],
+  "learning_education": [
+    { "title": "Study Plan Creation", "prompt": "Create a study plan for mastering [subject] in [timeframe], including milestones and resources.", "language": "text" },
+    { "title": "Generate Practice Questions", "prompt": "Generate a set of practice questions that test understanding of [concept] at different levels of complexity.", "language": "text" },
+    { "title": "Effective Note-Taking Framework", "prompt": "Develop a framework for taking effective notes while reading research papers about [topic].", "language": "text" },
+    { "title": "Glossary of Key Terms", "prompt": "Create a glossary of key terms and concepts for beginners learning about [subject].", "language": "text" },
+    { "title": "Spaced Repetition Schedule Design", "prompt": "Design a spaced repetition schedule for memorizing [content] for long-term retention.", "language": "text" },
+    { "title": "Active Learning Lesson Plan", "prompt": "Generate a lesson plan for teaching [concept] to [audience] using active learning techniques.", "language": "text" },
+    { "title": "Assessment Rubric Creation", "prompt": "Create a rubric for assessing [type of assignment] that provides constructive feedback.", "language": "text" },
+    { "title": "Critical Thinking Discussion Prompts", "prompt": "Develop discussion prompts that encourage critical thinking about [topic].", "language": "text" },
+    { "title": "Peer Teaching Framework", "prompt": "Design a framework for peer teaching that helps students reinforce their understanding of [subject].", "language": "text" },
+    { "title": "Explain Complex Concept (Analogies)", "prompt": "Generate analogies and examples to explain [complex concept] to beginners.", "language": "text" }
+  ],
+  "personal_development": [
+      { "title": "Create Habit Plan", "prompt": "Help me create a plan to build the habit of {desired_habit}. Outline steps including: \n1. Cue/Trigger (Making it obvious) \n2. Craving/Motivation (Making it attractive) \n3. Response/Action (Making it easy) \n4. Reward/Satisfaction (Making it satisfying). \nSuggest a specific starting frequency and duration.", "language": "text" },
+      { "title": "Set SMART Goal", "prompt": "Help me formulate a SMART (Specific, Measurable, Achievable, Relevant, Time-bound) goal for my aspiration to {general_goal (e.g., exercise more, learn a skill, read more)}.", "language": "text" },
+      { "title": "Introspective Exercise Prompt", "prompt": "Provide an introspective prompt or question to help someone reflect on their {area_of_reflection (e.g., core values, recent challenges, sources of happiness)}.", "language": "text" },
+      { "title": "Workout Plan Concept", "prompt": "Outline a basic weekly workout plan concept for a beginner aiming for {fitness_goal (e.g., general fitness, weight loss, muscle gain)}, including types of exercises and frequency. Note: Consult a professional for personalized advice.", "language": "text" },
+      { "title": "Stress Management Technique", "prompt": "Describe one technique for managing stress, such as {technique_name (e.g., deep breathing, mindfulness, progressive muscle relaxation)}. Explain how to practice it.", "language": "text" },
+      { "title": "Break Down Large Goal", "prompt": "My main goal is to {large_goal_description (e.g., 'write a book', 'run a marathon', 'learn conversational Spanish')}. Break this down into 5-7 smaller, actionable steps or milestones I can focus on over the next {timeframe (e.g., month, quarter)}.", "language": "text" },
+      { "title": "Habit Tracking System Design", "prompt": "Create a habit tracking system for building consistency with [habit], including accountability mechanisms.", "language": "text" },
+      { "title": "Monthly Personal Review Questions", "prompt": "Generate a list of reflection questions for a monthly personal review of my progress toward [goal].", "language": "text" },
+      { "title": "Identify High-Impact Habits", "prompt": "Design a framework for identifying which habits would most impact my goal of [goal].", "language": "text" },
+      { "title": "Overcome Habit Obstacles", "prompt": "Develop a strategy for overcoming common obstacles to maintaining [habit].", "language": "text" },
+      { "title": "Daily Mindfulness Practices", "prompt": "Suggest daily mindfulness practices that can be integrated into a busy schedule.", "language": "text" },
+      { "title": "Decision Framework (Yes/No)", "prompt": "Create a decision framework for evaluating whether to say yes or no to new commitments.", "language": "text" },
+      { "title": "Stress Management Strategies", "prompt": "Generate strategies for managing stress during particularly challenging periods at work.", "language": "text" },
+      { "title": "Personal Energy Management Plan", "prompt": "Design a personal energy management plan that accounts for my natural productivity rhythms.", "language": "text" },
+      { "title": "Weekly Mental Health Check-in", "prompt": "Develop a set of questions for a weekly mental health check-in with myself.", "language": "text" }
+  ],
+  "problem_solving_decision": [
+    { "title": "Analyze Situation from Multiple Perspectives", "prompt": "Help me analyze this situation from multiple perspectives: [describe situation].", "language": "text" },
+    { "title": "Identify and Test Assumptions", "prompt": "Generate a list of assumptions I might be making about [issue] and how to test them.", "language": "text" },
+    { "title": "Pre-Mortem Analysis", "prompt": "Create a pre-mortem analysis for my plan to [plan]. What could go wrong and how can I prevent it?", "language": "text" },
+    { "title": "Evaluate Information Source Credibility", "prompt": "Develop a framework for evaluating the credibility of information sources about [topic].", "language": "text" },
+    { "title": "Solicit Diverse Viewpoints", "prompt": "Design a process for soliciting diverse viewpoints before making a decision about [issue].", "language": "text" },
+    { "title": "Unconventional Problem Solving", "prompt": "Generate unconventional approaches to solving [problem] by applying principles from [unrelated field].", "language": "text" },
+    { "title": "Generate Creative Constraints", "prompt": "Create constraints that might lead to innovative solutions for [challenge].", "language": "text" },
+    { "title": "Reframe Problem with 'How Might We'", "prompt": "Develop a series of 'how might we' questions to reframe [problem] in more actionable ways.", "language": "text" },
+    { "title": "Structured Brainstorming Process", "prompt": "Suggest a structured brainstorming process (e.g., SCAMPER, Reverse Brainstorming) to generate solutions for [issue].", "language": "text" },
+    { "title": "Evaluate Creative Solutions Framework", "prompt": "Design a framework for evaluating creative solutions based on feasibility, impact, and novelty.", "language": "text" }
+  ],
+  "research_information_synth": [
+    { "title": "Research Paper Summary Template", "prompt": "Create a template for summarizing research papers that captures key findings, methodology, and limitations.", "language": "text" },
+    { "title": "Organize Research Notes Framework", "prompt": "Generate a framework for organizing notes and insights from multiple sources about [topic].", "language": "text" },
+    { "title": "Identify Literature Gaps Strategy", "prompt": "Develop a strategy for identifying gaps in the existing literature on [subject].", "language": "text" },
+    { "title": "Maintain Updated Knowledge Base System", "prompt": "Design a system for maintaining an updated knowledge base on rapidly evolving topics like [topic].", "language": "text" },
+    { "title": "Compare Conflicting Viewpoints Methodology", "prompt": "Create a methodology for comparing conflicting viewpoints on [controversial topic].", "language": "text" },
+    { "title": "Identify Future Developments (Trends)", "prompt": "Identify potential future developments in [industry] based on current trends and historical patterns.", "language": "text" },
+    { "title": "Assess Trend Longevity Questions", "prompt": "Generate questions to assess whether a trend in [area] is likely to be short-lived or transformative.", "language": "text" },
+    { "title": "Monitor Early Signals of Change Framework", "prompt": "Create a framework for monitoring early signals of change in [market/field].", "language": "text" },
+    { "title": "Separate Hype from Substance Methodology", "prompt": "Develop a methodology for separating hype from substantive change when evaluating [technology/trend].", "language": "text" },
+    { "title": "Scenario Planning Exercise Design", "prompt": "Design a scenario planning exercise for understanding potential futures for [industry/topic].", "language": "text" }
+  ],
   "data_analysis": [
     { "title": "Generate Insights from Data", "prompt": "Analyze the following dataset and provide 3 key insights or trends. \nDataset description: {description_of_data_columns_and_context}\nDataset (or summary):\n{paste_data_summary_or_link}", "language": "text" },
     { "title": "Explain Data Trend", "prompt": "Explain the potential reasons behind the {upward/downward/specific} trend observed in {metric_name} between {start_date} and {end_date} based on this data:\n{data_or_context}", "language": "text" },
     { "title": "Suggest Visualization", "prompt": "Given data showing {type_of_data (e.g., sales over time, category comparison)}, what is the most effective type of chart (e.g., bar, line, pie, scatter) to visualize this information and why?", "language": "text" },
     { "title": "Python Code for Plotting", "prompt": "Write Python code using {library (e.g., Matplotlib, Seaborn)} to create a {chart_type} visualizing the relationship between {x_axis_variable} and {y_axis_variable} from a pandas DataFrame named 'df'.", "language": "python"}
+
   ],
   "software_dev": [
     { "title": "Debug Python Code", "prompt": "Analyze the following Python code snippet and identify potential bugs or errors. Explain the issue and suggest a fix:\n\n```python\n{python_code_snippet}\n```", "language": "markdown" },
     { "title": "Optimize Algorithm", "prompt": "Suggest ways to optimize the following {language} code for better performance (time or space complexity):\n\n``` {language}\n{code_snippet_to_optimize}\n```", "language": "markdown" },
     { "title": "Generate Algorithm Concept", "prompt": "Outline an algorithm in pseudocode to solve the problem of {problem_description (e.g., finding the shortest path in a graph, sorting a list efficiently)}.", "language": "text" },
     { "title": "Explain Design Pattern", "prompt": "Explain the {design_pattern_name (e.g., Singleton, Factory, Observer)} design pattern in software development. Describe its purpose, structure, and provide a simple conceptual example.", "language": "text"}
+
   ],
   "cybersecurity": [
     { "title": "Analyze Threat Scenario", "prompt": "Describe the potential cybersecurity threats and attack vectors associated with {scenario (e.g., deploying a public-facing web application, employees using personal devices for work)}. Suggest mitigation strategies.", "language": "text" },
     { "title": "Incident Response Steps", "prompt": "Outline the key steps in an incident response plan for a suspected {type_of_incident (e.g., malware infection, data breach, phishing attack)}.", "language": "text" },
-    { "title": "Explain Security Concept", "prompt": "Explain the cybersecurity concept of {concept (e.g., Zero Trust, Defense in Depth, SQL Injection, Cross-Site Scripting)} in simple terms, including its risks and common prevention methods.", "language": "text" }
+    { "title": "Explain Security Concept", "prompt": "Explain the cybersecurity concept of {concept (e.g., Zero Trust, Defense in Depth, SQL Injection, Cross-Site Scripting)} in simple terms, including its risks and common prevention methods.", "language": "text" },
+    { "title": "Explain XSS Vulnerability", "prompt": "Explain what a Cross-Site Scripting (XSS) vulnerability is. Describe the difference between Stored XSS, Reflected XSS, and DOM-based XSS. Provide a simple example scenario for one type and suggest common mitigation techniques (e.g., input validation, output encoding).", "language": "text" },
+    { "title": "Password Security Best Practices", "prompt": "List at least 5 essential best practices for creating and managing strong passwords for end-users. Explain why each practice is important.", "language": "text" },
+    { "title": "Phishing Email Analysis", "prompt": "Analyze the following (hypothetical) email text and identify common red flags that suggest it might be a phishing attempt:\n\nEmail Text:\n`{hypothetical_phishing_email_text}`", "language": "text" },
+    { "title": "Basic Nmap Scan Command", "prompt": "Provide a basic Nmap command to scan the host {target_ip_or_hostname} for its most common open TCP ports and attempt operating system detection. Explain what each flag in the command does.", "language": "bash" },
+    { "title": "Incident Response - First Steps (Malware)", "prompt": "A user reports suspected malware on their workstation. Outline the critical first 3-5 steps an incident responder should take to contain the situation and begin investigation (e.g., isolation, evidence preservation).", "language": "text" },
+    { "title": "Explain Principle of Least Privilege", "prompt": "Explain the Principle of Least Privilege in cybersecurity. Why is it a fundamental security concept, and how can it be applied to user accounts and system processes?", "language": "text" },
+    { "title": "Identify Potential Firewall Block", "prompt": "A user cannot access an internal web application at `http://{internal_ip}:{port}`. They can ping the server's IP address. Suggest how to investigate if a host-based or network firewall might be blocking the connection on the specific port.", "language": "text" },
+    { "title": "Hashing vs Encryption", "prompt": "Explain the key differences between hashing and encryption in cryptography. Describe common use cases for each (e.g., password storage, data transmission).", "language": "text" }
   ],
    "project_management": [
     { "title": "Create Project Timeline Outline", "prompt": "Outline a high-level project timeline for {project_description}. Include key phases (e.g., planning, execution, testing, deployment) and estimated durations for each. Identify major milestones.", "language": "text" },
@@ -99,11 +250,6 @@
     { "title": "Write Ad Copy Variation", "prompt": "Write 3 variations of short ad copy (e.g., for Google Ads, Facebook Ads) promoting {product/service} and highlighting its main benefit: {key_benefit}.", "language": "text" },
     { "title": "Create Social Media Caption", "prompt": "Draft a social media caption for {platform (e.g., Instagram, LinkedIn)} to accompany an image/video about {content_subject}. Include relevant hashtags.", "language": "text" }
   ],
-   "customer_service": [
-    { "title": "Draft Empathetic Response (Complaint)", "prompt": "Draft an empathetic response to a customer complaint regarding {issue (e.g., late delivery, product defect)}. Acknowledge the problem, apologize, and outline the next step.", "language": "text" },
-    { "title": "Draft Response (Inquiry)", "prompt": "Draft a clear and helpful response to a customer inquiry asking about {question (e.g., product features, return policy, how to use a feature)}.", "language": "text" },
-    { "title": "De-escalation Phrases", "prompt": "Suggest 5 phrases that can be used in customer service to help de-escalate a situation with an upset customer.", "language": "text" }
-  ],
   "marketing": [
     { "title": "Social Media Post", "prompt": "Draft 3 distinct social media posts for {platform (e.g., Twitter, LinkedIn, Instagram)} to announce the launch of {product/feature}. Tailor the tone and length for each platform.", "language": "text" },
     { "title": "Headline Ideas", "prompt": "Generate 10 catchy and benefit-driven headline ideas for a landing page advertising {product/service}.", "language": "text" },
@@ -114,13 +260,6 @@
     { "title": "Explore Hypothesis", "prompt": "Given the observation {observation}, formulate a testable scientific hypothesis to explain it. Suggest a basic experimental design concept to test this hypothesis.", "language": "text" },
     { "title": "Summarize Academic Paper Abstract", "prompt": "Summarize the key findings and conclusions from the following academic paper abstract:\n\n{paste_abstract_text}", "language": "text" },
     { "title": "Analyze Sustainability Practice Impact", "prompt": "Discuss the potential positive and negative environmental impacts of implementing {sustainability_practice (e.g., switching to renewable energy, reducing water usage, implementing a recycling program)} in the context of {industry_or_setting}.", "language": "text" }
-  ],
-  "personal_development": [
-      { "title": "Create Habit Plan", "prompt": "Help me create a plan to build the habit of {desired_habit}. Outline steps including: \n1. Cue/Trigger (Making it obvious) \n2. Craving/Motivation (Making it attractive) \n3. Response/Action (Making it easy) \n4. Reward/Satisfaction (Making it satisfying). \nSuggest a specific starting frequency and duration.", "language": "text" },
-      { "title": "Set SMART Goal", "prompt": "Help me formulate a SMART (Specific, Measurable, Achievable, Relevant, Time-bound) goal for my aspiration to {general_goal (e.g., exercise more, learn a skill, read more)}.", "language": "text" },
-      { "title": "Introspective Exercise Prompt", "prompt": "Provide an introspective prompt or question to help someone reflect on their {area_of_reflection (e.g., core values, recent challenges, sources of happiness)}.", "language": "text" },
-      { "title": "Workout Plan Concept", "prompt": "Outline a basic weekly workout plan concept for a beginner aiming for {fitness_goal (e.g., general fitness, weight loss, muscle gain)}, including types of exercises and frequency. Note: Consult a professional for personalized advice.", "language": "text" },
-      { "title": "Stress Management Technique", "prompt": "Describe one technique for managing stress, such as {technique_name (e.g., deep breathing, mindfulness, progressive muscle relaxation)}. Explain how to practice it.", "language": "text" }
   ],
   "games_puzzles": [
       { "title": "Generate Trivia Questions", "prompt": "Create 5 trivia questions (with answers) about the topic: {trivia_topic}.", "language": "text" },
@@ -147,11 +286,14 @@
       { "title": "Retrieval Augmented Generation (RAG) Scenario", "prompt": "Imagine you need to answer the question '{complex_question_requiring_external_data}' using RAG. Describe the steps involved: 1. How would you retrieve relevant information? 2. How would you combine the retrieved information with your generative capabilities to formulate the answer?", "language": "text" }
   ],
    "coding": [
-    { "title": "Python Function", "prompt": "Write a well-commented Python function that takes a list of numbers and returns the sum of all even numbers in the list. Include error handling for non-numeric inputs.", "language": "python" },
-    { "title": "JavaScript Regex", "prompt": "Create a robust JavaScript regular expression to validate an email address according to common standards (RFC 5322 approximations).", "language": "javascript" },
-    { "title": "Explain Code Snippet", "prompt": "Explain what the following {language} code does step-by-step. Describe the purpose of each major block or function, the input it expects, and the output it produces:\n\n``` {language}\n{code_snippet}\n```", "language": "markdown" },
-    { "title": "Generate HTML Structure", "prompt": "Generate the basic HTML5 structure for a webpage with a header, main content area, sidebar, and footer.", "language": "html" },
-    { "title": "CSS Styling", "prompt": "Write CSS rules to style a button with the class '.action-button' to have a blue background, white text, rounded corners, and a subtle hover effect.", "language": "css" },
-    { "title": "SQL Query", "prompt": "Write an SQL query to select the {column_names} from the table '{table_name}' where {condition}.", "language": "sql" }
+    { "title": "Python Function with Error Handling", "prompt": "Write a well-commented Python function named `calculate_division` that takes two numbers, `numerator` and `denominator`, as input. It should return the result of the division. Implement robust error handling for potential `ZeroDivisionError` and `TypeError` (if inputs are not numbers), returning `None` or raising a custom exception in case of errors.", "language": "python" },
+    { "title": "JavaScript DOM Manipulation", "prompt": "Write JavaScript code to select an HTML element with the ID `user-greeting`. If the element exists, change its text content to 'Welcome back, {username}!' where `{username}` is a variable holding the user's name. If the element doesn't exist, log an error to the console.", "language": "javascript" },
+    { "title": "Explain Algorithm (e.g., Binary Search)", "prompt": "Explain the Binary Search algorithm step-by-step. Describe its prerequisites (sorted array), time complexity (Big O notation), and provide pseudocode or a simple code example in {preferred_language (e.g., Python, Java)}.", "language": "text" },
+    { "title": "Refactor Code for Readability", "prompt": "Analyze the following {language} code snippet and suggest specific refactoring steps to improve its readability and maintainability. Explain the reasoning behind each suggestion.\n\n``` {language}\n{code_snippet_to_refactor}\n```", "language": "markdown" },
+    { "title": "Generate Unit Test Cases", "prompt": "Given the following {language} function signature and description, generate a list of at least 5 distinct unit test cases (including edge cases, valid inputs, and invalid inputs) that should be tested.\n\nFunction: `{function_signature}`\nDescription: `{function_description}`", "language": "text" },
+    { "title": "SQL Query for Join", "prompt": "Write an SQL query to retrieve the `order_id` from the `Orders` table and the corresponding `customer_name` from the `Customers` table. The tables are linked by `customer_id`. Only include orders placed after `{date}`.", "language": "sql" },
+    { "title": "REST API Endpoint Design", "prompt": "Design a REST API endpoint (including HTTP method, URL path, potential request body parameters, and expected success/error responses) for the action: {action_description (e.g., 'creating a new user', 'retrieving a specific product by ID', 'updating an order status')}.", "language": "text" },
+    { "title": "Debug Common Error Message", "prompt": "Explain the common causes and potential solutions for the following error message in {language_or_framework}: '{error_message_text}'", "language": "text" },
+    { "title": "Autonomous Code Testing & Improvement Agent", "prompt": "**Role:** Assume the role of a **Meticulous Autonomous Code Analysis Agent**. Your primary functions are to test code against provided specifications, identify deviations or areas for enhancement, and iteratively refine the code.\n\n**Objective:** Systematically analyze, simulate testing, identify issues, and generate improved versions of an initial code snippet until it satisfies all requirements and passes all test cases, or until a specified iteration limit is reached.\n\n**Inputs:**\n\n1.  **Programming Language:** `{LANGUAGE}`\n2.  **Initial Code Snippet:**\n    ``` {LANGUAGE}\n    {INITIAL_CODE}\n    ```\n3.  **Requirements Description:**\n    `{REQUIREMENTS}`\n4.  **Test Cases:** (Provided as Input -> Expected Output pairs)\n    `{TEST_CASES}`\n    *   Example Format:\n        *   Test 1: Input: `[Input Value/Args]`, Expected Output: `[Expected Result]`\n        *   Test 2: Input: `[Input Value/Args]`, Expected Output: `[Expected Result]`\n        *   ...\n5.  **Maximum Iterations:** `{MAX_ITERATIONS}`\n\n**Process:**\n\n1.  **Initial Analysis:**\n    *   Briefly confirm understanding of the code's purpose based on the requirements.\n    *   Acknowledge the language and test cases provided.\n2.  **Iterative Refinement Loop (Repeat up to `MAX_ITERATIONS` times):**\n    *   **A. Simulate Test Execution:**\n        *   For *each* test case provided, perform a step-by-step simulated execution of the *current* code version.\n        *   **Crucially, document the predicted output for each test case based on your simulation.**\n        *   Compare your predicted output against the expected output.\n        *   Determine if the test case result is `Pass` or `Fail`. If `Fail`, briefly state the discrepancy.\n    *   **B. Identify Issues & Prioritize:**\n        *   Based on the simulated test results, list all identified issues. Prioritize them as follows:\n            1.  **Correctness Errors:** Code produces incorrect output for specified test cases or clearly violates requirements.\n            2.  **Potential Edge Case Failures:** Identify inputs not covered by tests where the code might fail or behave unexpectedly.\n            3.  **Inefficiencies:** Suggest improvements for performance (time/space complexity) if obvious.\n            4.  **Readability/Style:** Note violations of common {LANGUAGE} style conventions or areas where clarity can be improved.\n        *   If all tests passed *and* no critical issues (like unhandled edge cases) are identified, proceed to **Termination**.\n    *   **C. Generate Revised Code & Explain:**\n        *   If issues were identified, generate a *new, complete version* of the code snippet addressing the *highest priority* issues first.\n        *   Provide a clear, concise explanation linking each change directly to the issue(s) it resolves. Focus on *why* the change was made.\n    *   **D. Check Iteration Limit:** If the maximum number of iterations has been reached, proceed to **Termination**.\n3.  **Termination:**\n    *   State the final status: `Complete` (all tests passed, no critical issues) or `Stopped - Max Iterations Reached`.\n    *   Provide the final version of the code.\n    *   If stopped due to iterations, briefly list any outstanding high-priority issues.\n\n**Output Format:**\n\n**Initial Analysis:**\n*   **Understood Goal:** [Brief confirmation, e.g., \"Code aims to calculate factorial\"]\n*   **Language:** {LANGUAGE}\n*   **Test Cases Acknowledged:** [Number]\n\n---\n\n**Iteration: [1 to MAX_ITERATIONS]**\n*   **Status:** [Testing / Improving]\n*   **Simulated Test Results:**\n    *   Test Case 1: Input: `[Input]` -> Predicted: `[Output]` | Expected: `[Output]` | Result: [Pass/Fail - Brief reason if Fail]\n    *   Test Case 2: Input: `[Input]` -> Predicted: `[Output]` | Expected: `[Output]` | Result: [Pass/Fail - Brief reason if Fail]\n    *   ...\n*   **Issues Identified (Prioritized):**\n    1.  [Highest priority issue description]\n    2.  [Next priority issue description]\n    *   ... (List only if issues exist)\n*   **Revised Code:** (Only if issues were identified and changes made)\n    ``` {LANGUAGE}\n    [Revised code snippet]\n    ```\n*   **Explanation of Changes:** (Only if Revised Code is provided)\n    *   [Change 1: Explain what was changed and why, linking to an issue #]\n    *   [Change 2: Explain what was changed and why, linking to an issue #]\n    *   ...\n\n---\n\n**(Repeat Iteration Block)**\n\n---\n\n**Final Output:**\n*   **Final Status:** [Complete / Stopped - Max Iterations Reached]\n*   **Final Code:**\n    ``` {LANGUAGE}\n    [Final code snippet]\n    ```\n*   **Outstanding Issues (If Status is Stopped):**\n    *   [Brief description of unresolved high-priority issues]\n\n**Constraints & Guidance:**\n\n*   **Simulation Only:** You *cannot* execute code. All testing is based on your step-by-step simulation and analysis.\n*   **Show Your Work:** Clearly document predicted outputs during simulation.\n*   **Clarity and Conciseness:** Explain changes and issues directly and avoid unnecessary verbosity.\n*   **Focus on Improvement:** Address identified issues systematically based on priority.\n*   **Adhere to Language Best Practices:** Consider standard {LANGUAGE} conventions when suggesting improvements.\n*   **No External Tools:** Operate solely based on the provided inputs.\n*   **Do Not Ask Questions:** Proceed based on the information given unless a critical ambiguity *prevents* any analysis.\n\n**Now, begin with the Initial Analysis.**", "language": "markdown" }
   ]
 }
