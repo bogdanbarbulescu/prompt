@@ -1,0 +1,280 @@
+/* Keep all original styles from your styles.css file */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1d2634;
+    color: #9e9ea4;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .material-icons-outlined {
+    vertical-align: middle;
+    line-height: 1px;
+    /* Adjust icon size slightly if needed */
+    font-size: 28px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 260px 1fr; /* Simplified for this example if 4 cols not needed */
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      'sidebar header'
+      'sidebar main';
+    height: 100vh;
+  }
+  
+  /* ---------- HEADER ---------- */
+  .header {
+    grid-area: header;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px 0 30px;
+    box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
+    background-color: #263043; /* Ensure header has background */
+    z-index: 10; /* Ensure header is above sidebar content */
+    position: relative; /* Needed for z-index */
+  }
+  
+  .menu-icon {
+    display: none;
+    cursor: pointer; /* Add cursor pointer */
+    color: #9e9ea4;  /* Ensure visibility */
+  }
+  
+  .header-left span,
+  .header-right span {
+      color: #9e9ea4;
+      margin: 0 10px;
+      cursor: pointer;
+  }
+  .header-left span:hover,
+  .header-right span:hover {
+      color: #f5f7ff;
+  }
+  
+  
+  /* ---------- SIDEBAR ---------- */
+  #sidebar {
+    grid-area: sidebar;
+    height: 100%;
+    background-color: #263043;
+    overflow-y: auto;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    padding-bottom: 30px; /* Add padding at bottom */
+  }
+  
+  .sidebar-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 20px 20px; /* Adjusted padding */
+    margin-bottom: 10px; /* Reduced margin */
+    border-bottom: 1px solid #55596e; /* Add a separator */
+  }
+  
+  .sidebar-title > span {
+    display: none; /* The close icon */
+    cursor: pointer;
+    color: #9e9ea4;
+  }
+  .sidebar-title > span:hover {
+    color: #f5f7ff;
+  }
+  
+  .sidebar-brand {
+    margin-top: 10px; /* Adjusted margin */
+    font-size: 20px;
+    font-weight: 700;
+    color: #f5f7ff; /* Make brand text brighter */
+    display: flex;
+    align-items: center;
+  }
+  .sidebar-brand > .material-icons-outlined {
+      margin-right: 10px;
+      font-size: 30px; /* Slightly larger icon */
+  }
+  
+  
+  .sidebar-list {
+    padding: 0;
+    margin-top: 15px;
+    list-style-type: none;
+  }
+  
+  .sidebar-list-item {
+    padding: 15px 20px; /* Adjusted padding */
+    font-size: 16px; /* Slightly smaller font */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    cursor: pointer;
+    border-left: 3px solid transparent; /* For active state indicator */
+  }
+  
+  .sidebar-list-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left-color: #55596e;
+  }
+  .sidebar-list-item.active {
+      background-color: rgba(41, 98, 255, 0.2); /* Use a theme color for active */
+      border-left-color: #2962ff; /* Highlight active item */
+  }
+  .sidebar-list-item.active a {
+      color: #f5f7ff; /* Make active link text brighter */
+      font-weight: 500;
+  }
+  
+  
+  .sidebar-list-item a {
+    text-decoration: none;
+    color: #9e9ea4;
+    display: flex; /* Align icon and text */
+    align-items: center;
+  }
+  .sidebar-list-item a .material-icons-outlined {
+      margin-right: 15px;
+      font-size: 22px; /* Adjust icon size */
+  }
+  
+  
+  .sidebar-responsive {
+    display: inline !important;
+    position: absolute;
+    left: 0; /* Ensure it starts from the left */
+    top: 0;  /* Ensure it starts from the top */
+    width: 260px; /* Ensure it takes its width */
+    z-index: 12 !important;
+  }
+  
+  /* ---------- MAIN ---------- */
+  .main-container {
+    grid-area: main;
+    overflow-y: auto;
+    padding: 25px 35px; /* Increased padding */
+    color: rgba(255, 255, 255, 0.95);
+    background-color: #1d2634; /* Ensure main has background */
+  }
+  
+  .main-title {
+    margin-bottom: 20px; /* Add space below title */
+  }
+  .main-title h2 {
+      color: #f5f7ff;
+      font-weight: 600;
+  }
+  
+  
+  /* --- Styles for Prompt Cards --- */
+  .prompt-card {
+      background-color: #263043;
+      margin-bottom: 25px;
+      padding: 20px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.3);
+      border: 1px solid #55596e40;
+  }
+  
+  .prompt-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #55596e;
+  }
+  
+  .prompt-card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e0e0e0; /* Lighter title color */
+  }
+  
+  /* --- Styles for Syntax Highlighting (using PrismJS) --- */
+  /* Override default Prism theme background if needed */
+  pre[class*="language-"] {
+      background: #2d2d2d; /* Match Okaidia theme or slightly different */
+      padding: 15px;
+      margin: 0; /* Remove default margin */
+      border-radius: 5px;
+      border: 1px solid #55596e;
+      font-size: 0.9rem; /* Adjust font size */
+      /* Ensure Prism toolbar (copy button) works well */
+      position: relative;
+  }
+  
+  /* Style the copy button from PrismJS */
+  div.code-toolbar > .toolbar {
+      opacity: 0; /* Hide initially */
+      transition: opacity 0.3s ease-in-out;
+  }
+  
+  div.code-toolbar:hover > .toolbar {
+      opacity: 1; /* Show on hover */
+  }
+  
+  .toolbar .toolbar-item button {
+      background: #55596e !important;
+      color: #f5f7ff !important;
+      box-shadow: none !important;
+      border-radius: 4px !important;
+      padding: 5px 10px !important;
+      font-size: 0.8rem !important;
+  }
+  .toolbar .toolbar-item button:hover {
+      background: #2962ff !important; /* Theme color on hover */
+  }
+  
+  
+  /* ---------- MEDIA QUERIES ---------- */
+  
+  /* Medium <= 992px */
+  @media screen and (max-width: 992px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr; /* Adjust rows for header and main */
+      grid-template-areas:
+        'header'
+        'main';
+       height: 100vh; /* Ensure it still takes full height */
+    }
+  
+    #sidebar {
+      display: none; /* Hide sidebar by default */
+    }
+  
+    .menu-icon {
+      display: inline; /* Show menu icon */
+    }
+  
+    .sidebar-title > span {
+      display: inline; /* Show close icon inside sidebar */
+    }
+  }
+  
+  /* Small <= 768px */
+  /* Keep original small screen adjustments if needed */
+  @media screen and (max-width: 768px) {
+    .main-container {
+        padding: 20px 15px; /* Reduce padding on smaller screens */
+    }
+    .prompt-card {
+        padding: 15px 20px;
+    }
+  }
+  
+  
+  /* Extra Small <= 576px */
+  @media screen and (max-width: 576px) {
+    .header-left {
+      /* Optionally hide search on very small screens if needed */
+      /* display: none; */
+    }
+    .header-right span {
+        margin: 0 5px; /* Reduce spacing */
+    }
+    .main-title h2 {
+        font-size: 1.3rem; /* Smaller title */
+    }
+  }
