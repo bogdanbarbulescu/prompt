@@ -1,538 +1,590 @@
-/* --- Base Styles --- */
+/* --- Base Styles & Variables --- */
+:root {
+  --sidebar-width: 260px;
+  --header-height: 70px;
+  --bg-dark-primary: #1d2634;
+  --bg-dark-secondary: #263043;
+  --bg-dark-tertiary: #2d2d2d; /* Code blocks */
+  --bg-summary-card: #3a465a; /* Distinct background for summary cards */
+  --text-primary: #F1EFEC;   /* Brighter white/off-white */
+  --text-secondary: #cacad4; /* Softer grey */
+  --text-muted: #7e8a9a;    /* Dimmer grey */
+  --accent-primary: #2962ff; /* Blue */
+  --accent-secondary: #00ab57; /* Green */
+  --accent-tertiary: #ffcc00; /* Yellow */
+  --accent-hover-bg: rgba(41, 98, 255, 0.3);
+  --border-color: #55596e;
+  --border-color-light: rgba(85, 89, 110, 0.25);
+  --success-color: #00ab57;
+  --danger-color: #ff6d00;
+  --font-family: 'Montserrat', sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #1d2634;
-  color: #9e9ea4;
-  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-dark-primary);
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  box-sizing: border-box; /* Apply box-sizing globally */
 }
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 
 .material-icons-outlined {
   vertical-align: middle;
   line-height: 1px;
   font-size: 28px; /* Default icon size */
+  flex-shrink: 0; /* Prevent icons from shrinking in flex layouts */
 }
+
+/* Basic focus styles for accessibility - subtle */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.prediction-item:focus-visible,
+.category-card:focus-visible {
+    outline: 1px solid var(--accent-primary); /* Thinner outline */
+    outline-offset: 1px;
+    box-shadow: none; /* Remove glow */
+    border-radius: 3px;
+}
+/* Remove default outline when custom is applied */
+a:focus, button:focus, input:focus, .prediction-item:focus, .category-card:focus {
+    outline: none;
+}
+
 
 /* --- Grid Layout --- */
 .grid-container {
   display: grid;
-  grid-template-columns: 260px 1fr; /* Sidebar and Main content */
-  grid-template-rows: 70px 1fr; /* Header row and Main content row */
+  grid-template-columns: var(--sidebar-width) 1fr; /* Use variable */
+  grid-template-rows: var(--header-height) 1fr; /* Use variable */
   grid-template-areas:
     'sidebar header'
     'sidebar main';
   height: 100vh;
+  overflow: hidden; /* Prevent body scroll */
 }
 
 /* ---------- HEADER ---------- */
 .header {
   grid-area: header;
-  height: 70px;
+  height: var(--header-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px 0 30px;
-  box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
-  background-color: #263043; /* Header background */
-  z-index: 10; /* Ensure header is above other content if needed */
-  position: relative; /* Needed for search predictions positioning */
+  padding: 0 30px;
+  box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.25); /* Softer shadow */
+  background-color: var(--bg-dark-secondary);
+  z-index: 10;
+  position: relative;
 }
 
 .menu-icon {
-  display: none; /* Hidden by default, shown in media query */
+  display: none;
   cursor: pointer;
-  color: #9e9ea4;
-  padding: 10px; /* Add padding for easier clicking */
+  color: var(--text-secondary);
+  padding: 10px;
+  border-radius: 50%; /* Make it round */
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 .menu-icon:hover {
-    color: #f5f7ff;
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover bg */
 }
 
 /* --- Header Left: Search --- */
 .header-left {
-    flex-grow: 1; /* Allow search to take available space */
-    margin: 0 20px; /* Add some margin around search */
-    max-width: 600px; /* Optional: Limit max width of search */
+    flex-grow: 1;
+    margin: 0 20px;
+    max-width: 600px;
+    min-width: 200px; /* Ensure it doesn't collapse too much */
 }
 
 .search-wrapper {
-    position: relative; /* Needed for absolute positioning of icon and predictions */
+    position: relative;
     display: flex;
     align-items: center;
-    background-color: #1d2634; /* Match main background */
-    border-radius: 20px; /* Rounded corners */
-    padding: 0 10px; /* Padding inside wrapper */
-    border: 1px solid #55596e;
-    transition: border-color 0.2s ease;
+    background-color: var(--bg-dark-primary);
+    border-radius: 20px;
+    padding: 0 10px;
+    border: 1px solid var(--border-color);
+    transition: border-color 0.2s ease; /* Remove box-shadow transition */
 }
-.search-wrapper:focus-within { /* Style when input inside is focused */
-    border-color: #2962ff;
+.search-wrapper:focus-within {
+    border-color: var(--border-color); /* Keep border same on focus */
+    /* Removed box-shadow */
 }
 
 .search-wrapper .search-icon {
-    color: #9e9ea4;
+    color: var(--text-secondary);
     font-size: 24px;
-    position: absolute; /* Position icon inside */
-    left: 15px; /* Adjust icon position */
+    position: absolute;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    pointer-events: none; /* Prevent icon from interfering with input click */
+    pointer-events: none;
+    z-index: 1; /* Ensure icon is above input background */
 }
 
 #search-input {
-    flex-grow: 1; /* Input takes remaining space */
+    flex-grow: 1;
     background-color: transparent;
     border: none;
     outline: none;
-    color: #f5f7ff;
-    font-family: 'Montserrat', sans-serif;
+    color: var(--text-primary);
+    font-family: var(--font-family);
     font-size: 0.9rem;
-    padding: 10px 15px 10px 45px; /* Right/Top/Bottom padding, Left padding for icon */
-    width: 100%; /* Ensure it fills flex item */
-    box-sizing: border-box; /* Include padding in width */
+    padding: 10px 15px 10px 45px; /* Left padding for icon */
+    width: 100%;
 }
 
 #search-input::placeholder {
-    color: #7e8a9a;
-    opacity: 0.8;
+    color: var(--text-muted);
+    opacity: 1; /* Ensure placeholder visible */
 }
 
 #search-predictions {
-    display: none; /* Hidden by default */
+    display: none;
     position: absolute;
-    top: calc(100% + 5px); /* Position below the search wrapper */
+    top: calc(100% + 5px);
     left: 0;
-    right: 0; /* Span full width of wrapper */
-    background-color: #263043; /* Match header/sidebar */
-    border: 1px solid #55596e;
+    right: 0;
+    background-color: var(--bg-dark-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    max-height: 300px; /* Limit height and make scrollable */
+    max-height: 300px;
     overflow-y: auto;
-    z-index: 15; /* Ensure it's above main content, maybe above sidebar */
+    z-index: 15;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    scrollbar-width: thin; /* Add scrollbar styling */
+    scrollbar-color: var(--border-color) var(--bg-dark-secondary);
 }
+#search-predictions::-webkit-scrollbar { width: 6px; }
+#search-predictions::-webkit-scrollbar-track { background: var(--bg-dark-secondary); }
+#search-predictions::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 3px; }
+#search-predictions::-webkit-scrollbar-thumb:hover { background-color: #7e8a9a; }
+
 
 #search-predictions .prediction-item {
     padding: 10px 15px;
-    color: #e0e0e0;
+    color: var(--text-primary);
     font-size: 0.85rem;
     cursor: pointer;
-    border-bottom: 1px solid #3a465a; /* Separator line */
+    border-bottom: 1px solid rgba(85, 89, 110, 0.5); /* Use var or rgba */
     transition: background-color 0.2s ease;
-    white-space: nowrap; /* Prevent wrapping */
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis if text too long */
+    text-overflow: ellipsis;
 }
-#search-predictions .prediction-item:last-child {
-    border-bottom: none;
-}
-
+#search-predictions .prediction-item:last-child { border-bottom: none; }
 #search-predictions .prediction-item:hover {
-    background-color: rgba(41, 98, 255, 0.3); /* Highlight on hover */
-    color: #f5f7ff;
+    background-color: var(--accent-hover-bg);
+    color: var(--text-primary);
 }
-
-#search-predictions .no-results {
-    padding: 15px;
-    color: #9e9ea4;
-    font-size: 0.85rem;
-    text-align: center;
-    cursor: default;
-}
+#search-predictions .no-results { padding: 15px; color: var(--text-muted); font-size: 0.85rem; text-align: center; cursor: default; }
 
 /* --- Header Right: Icons --- */
+.header-right {
+    display: flex; /* Ensure icons stay in a row */
+    align-items: center;
+}
 .header-right span {
-    color: #9e9ea4;
-    margin: 0 10px; /* Spacing between icons */
+    color: var(--text-secondary);
+    margin-left: 18px; /* Increased space icons using left margin */
     cursor: pointer;
-    font-size: 26px; /* Icon size */
+    font-size: 26px;
     transition: color 0.2s ease;
 }
-.header-right span:hover {
-    color: #f5f7ff; /* Brighter color on hover */
-}
+.header-right span:hover { color: var(--text-primary); }
 
 
 /* ---------- SIDEBAR ---------- */
 #sidebar {
   grid-area: sidebar;
   height: 100%;
-  background-color: #263043;
+  background-color: var(--bg-dark-secondary);
   overflow-y: auto;
-  transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  transition: transform 0.5s ease, left 0.5s ease; /* Added transform */
   padding-bottom: 30px;
-  display: flex; /* Use flexbox for column layout */
-  flex-direction: column; /* Stack title and list */
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--border-color) var(--bg-dark-secondary); /* Firefox */
 }
+/* Webkit Scrollbar Styling */
+#sidebar::-webkit-scrollbar { width: 6px; }
+#sidebar::-webkit-scrollbar-track { background: var(--bg-dark-secondary); }
+#sidebar::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 3px; }
+#sidebar::-webkit-scrollbar-thumb:hover { background-color: #7e8a9a; } /* Slightly lighter on hover */
 
 .sidebar-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 20px 20px 20px;
+  padding: 20px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #55596e;
-  flex-shrink: 0; /* Prevent title from shrinking */
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
 }
 
 .sidebar-title > span { /* The close icon */
   display: none;
   cursor: pointer;
-  color: #9e9ea4;
+  color: var(--text-secondary);
+  padding: 5px; /* Click target */
+  border-radius: 50%;
 }
 .sidebar-title > span:hover {
-  color: #f5f7ff;
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-brand {
   margin-top: 10px;
   font-size: 20px;
   font-weight: 700;
-  color: #f5f7ff;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
 }
-.sidebar-brand > .material-icons-outlined {
-    margin-right: 10px;
-    font-size: 30px;
-}
-
+.sidebar-brand > .material-icons-outlined { margin-right: 10px; font-size: 30px; }
 
 .sidebar-list {
   padding: 0;
-  margin: 15px 0 0 0; /* Adjusted margin */
+  margin: 15px 0 0 0;
   list-style-type: none;
-  overflow-y: auto; /* Allow list to scroll if needed */
-  flex-grow: 1; /* Allow list to take remaining space */
+  overflow-y: auto; /* Only allow vertical scroll */
+  flex-grow: 1;
 }
 
 .sidebar-list-item {
-  padding: 15px 20px;
-  font-size: 15px; /* Slightly smaller font for more items */
-  transition: background-color 0.3s ease, border-left-color 0.3s ease;
+  padding: 13px 20px; /* Adjusted padding */
+  font-size: 0.9rem; /* Slightly larger */
+  transition: background-color 0.2s ease, border-left-color 0.2s ease;
   cursor: pointer;
-  border-left: 4px solid transparent; /* Indicator */
-  margin-bottom: 2px; /* Small space between items */
+  border-left: 4px solid transparent;
+  margin-bottom: 2px;
 }
-
 .sidebar-list-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-left-color: #55596e; /* Subtle hover indicator */
+  background-color: rgba(255, 255, 255, 0.07); /* Slightly less intense hover */
+  border-left-color: var(--border-color);
 }
 .sidebar-list-item.active {
-    background-color: rgba(41, 98, 255, 0.2); /* Theme color for active bg */
-    border-left-color: #2962ff; /* Stronger active indicator */
+    background-color: var(--accent-hover-bg);
+    border-left-color: var(--accent-primary);
 }
 .sidebar-list-item.active a {
-    color: #f5f7ff;
-    font-weight: 600; /* Make active text bold */
+    color: var(--text-primary);
+    font-weight: 600;
 }
-
 
 .sidebar-list-item a {
   text-decoration: none;
-  color: #9e9ea4;
+  color: var(--text-secondary); /* Use secondary text color */
   display: flex;
   align-items: center;
-  width: 100%; /* Ensure link takes full width */
-  white-space: nowrap; /* Prevent text wrapping */
+  width: 100%;
+  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Add ellipsis if too long */
+  text-overflow: ellipsis;
+  transition: color 0.2s ease;
 }
-.sidebar-list-item a .material-icons-outlined {
-    margin-right: 15px;
-    font-size: 22px;
-    flex-shrink: 0; /* Prevent icon from shrinking */
+.sidebar-list-item:hover a {
+    color: var(--text-primary); /* Link text brightens on item hover */
 }
+.sidebar-list-item a .material-icons-outlined { margin-right: 15px; font-size: 22px; }
 
-
+/* Responsive Sidebar (Overlay) */
 .sidebar-responsive {
-  display: flex !important; /* Use flex here too */
-  position: fixed; /* Use fixed for overlay behavior */
-  left: -260px; /* Start off-screen for transition */
+  display: flex !important;
+  position: fixed;
+  left: calc(-1 * var(--sidebar-width)); /* Start off-screen using variable */
   top: 0;
-  width: 260px;
-  height: 100%; /* Take full viewport height */
-  z-index: 12 !important; /* Ensure it's above other content */
-  box-shadow: 5px 0 15px rgba(0,0,0,0.2); /* Add shadow for overlay */
-  transition: left 0.5s ease; /* CSS transition for sliding */
+  width: var(--sidebar-width);
+  height: 100%;
+  z-index: 20; /* Higher z-index for overlay */
+  box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+  transition: left 0.4s ease-out; /* Smoother transition */
 }
-.sidebar-responsive.open {
-    left: 0; /* Slide in */
-}
+.sidebar-responsive.open { left: 0; }
 
 
 /* ---------- MAIN ---------- */
 .main-container {
   grid-area: main;
-  overflow-y: auto;
-  padding: 25px 35px;
-  color: rgba(255, 255, 255, 0.95);
-  background-color: #1d2634;
+  overflow-y: auto; /* Allow main content to scroll */
+  padding: 30px 40px; /* Slightly more padding */
+  background-color: var(--bg-dark-primary);
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--border-color) var(--bg-dark-primary); /* Firefox */
+}
+/* Webkit Scrollbar Styling */
+.main-container::-webkit-scrollbar { width: 8px; }
+.main-container::-webkit-scrollbar-track { background: var(--bg-dark-primary); }
+.main-container::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 4px; border: 2px solid var(--bg-dark-primary); } /* Add border for track feel */
+.main-container::-webkit-scrollbar-thumb:hover { background-color: #7e8a9a; }
+
+.main-title { margin-bottom: 25px; }
+.main-title h2 { color: var(--text-primary); font-weight: 600; font-size: 1.6rem; /* Slightly larger title */ }
+
+/* --- Dashboard Summary Section --- */
+.dashboard-summary {
+  display: grid;
+  /* Arrange 2 summary cards side-by-side by default, allow wrapping */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Fit based on min width */
+  gap: 25px;
+  margin-bottom: 40px; /* Space below summary */
 }
 
-.main-title {
-  margin-bottom: 20px;
+/* Styling for individual summary cards */
+.summary-card {
+  background-color: var(--bg-summary-card); /* Use the new variable */
+  padding: 20px 25px; /* Adjusted padding */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.2); /* Softer shadow */
+  border: 1px solid var(--border-color-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Removed min-height */
 }
-.main-title h2 {
-    color: #f5f7ff;
-    font-weight: 600;
+.summary-card .card-inner h3 { /* Title like "Total Prompts" */
+  font-size: 0.95rem; /* Slightly adjusted size */
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-right: 10px; /* Space for icon */
+  flex-grow: 1; /* Allow title to take space */
+}
+.summary-card .card-inner .material-icons-outlined { /* Icon */
+  font-size: 32px; /* Adjusted size */
+  opacity: 0.7; /* Slightly more visible */
+}
+.summary-card h1 { /* The count */
+  font-size: 2.8rem; /* Adjusted size */
+  font-weight: 700;
+  margin-top: 10px;
+  text-align: right;
+  color: var(--text-primary);
+  line-height: 1.1;
 }
 
-/* Main Cards Grid (Used for Dashboard) */
+/* --- Dashboard Category Cards Grid --- */
 .main-cards {
   display: grid;
-  /* Use auto-fit for responsive columns */
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px; /* Increased gap */
+  /* Max 3 columns */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* Slightly reduced gap */
   margin: 25px 0;
 }
 
-/* General Card Styling (Base for Category Cards) */
+/* General Card Styling (Base) */
 .card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Align count to bottom */
-  padding: 25px; /* Increased padding */
+  justify-content: space-between;
   border-radius: 8px;
-  box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(85, 89, 110, 0.25); /* Fainter border */
-  color: #f5f7ff;
-  min-height: 130px; /* Slightly taller cards */
+  box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.2); /* Softer shadow */
+  border: 1px solid var(--border-color-light);
+  color: var(--text-primary);
+  background-color: var(--bg-dark-secondary); /* Default background */
 }
 
 /* Dashboard Category Card Specific Styles */
 .category-card {
-    background-color: #263043; /* Darker background like sidebar/charts */
+    padding: 15px 20px; /* Reduced padding */
+    min-height: 100px; /* Reduced min-height */
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     cursor: pointer;
 }
-.category-card:hover {
-    transform: translateY(-5px); /* Lift effect */
-    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
-}
-
+.category-card:hover { transform: translateY(-4px); box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.3); } /* Adjusted hover */
 .category-card .card-inner h3 {
-    font-size: 1.0rem; /* Slightly smaller title for potentially longer names */
+    font-size: 0.85rem; /* Smaller title */
     font-weight: 600;
-    margin-bottom: 5px;
-    line-height: 1.3; /* Allow wrapping */
+    line-height: 1.3;
+    margin-right: 8px; /* Space for icon */
+    flex-grow: 1;
 }
-
 .category-card h1 { /* Prompt Count */
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-top: 15px; /* More space above count */
-    text-align: right; /* Align count to the right */
-    color: #7e8a9a; /* Dim the count slightly */
+    font-size: 2.2rem; /* Smaller count */
+    font-weight: 600; /* Slightly less bold */
+    margin-top: 8px; /* Reduced margin */
+    text-align: right;
+    color: var(--text-muted);
+}
+.category-card .card-inner > .material-icons-outlined {
+  font-size: 28px; /* Smaller icon */
+  opacity: 0.6; /* Adjusted opacity */
 }
 
 .card-inner {
   display: flex;
-  align-items: flex-start; /* Align items to top */
+  align-items: center; /* Vertically center icon and title block */
   justify-content: space-between;
-}
-
-.card-inner > .material-icons-outlined { /* Icon in card */
-  font-size: 35px; /* Slightly smaller icon */
-   opacity: 0.6; /* Make icon more subtle */
-   margin-left: 10px; /* Space between title and icon */
-   flex-shrink: 0;
 }
 
 
 /* Prompt Display Area Styles */
-#prompt-container {
-    /* Controlled by inline style and JS */
-}
+#prompt-container { display: none; margin-top: 30px; /* More space above prompts */}
 
 .prompt-card {
-    background-color: #263043;
     margin-bottom: 25px;
     padding: 20px 25px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--bg-dark-secondary);
     border-radius: 8px;
-    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(85, 89, 110, 0.25);
-    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Add for highlight */
+    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color-light);
 }
-
 .prompt-card-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Vertically align title and button */
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #55596e;
+    border-bottom: 1px solid var(--border-color);
 }
-
 .prompt-card-title {
-    font-size: 1.1rem;
+    font-size: 1.05rem; /* Slightly smaller title */
     font-weight: 600;
-    color: #e0e0e0;
+    color: var(--text-primary);
+    margin-right: 15px; /* Add space between title and copy button */
+    flex-grow: 1; /* Allow title to take space */
 }
 
-/* --- Prompt Card Highlighting --- */
+/* --- Copy Prompt Button Styles --- */
+.copy-prompt-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 5px; /* Click area */
+    border-radius: 4px;
+    display: inline-flex; /* Align icon properly */
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+.copy-prompt-btn .material-icons-outlined {
+    font-size: 22px; /* Match sidebar icon size */
+}
+.copy-prompt-btn:hover {
+    color: var(--accent-primary); /* Highlight color on hover */
+    background-color: rgba(41, 98, 255, 0.1); /* Subtle background */
+}
+/* Style for when copy is successful (icon changes to 'check') */
+.copy-prompt-btn.copied .material-icons-outlined {
+    color: var(--success-color); /* Green check */
+}
+
+/* Prompt Card Highlighting */
 .prompt-card.highlighted {
-    border-left: 4px solid #2962ff !important; /* Stronger left border */
-    background-color: rgba(41, 98, 255, 0.15) !important; /* Subtle background tint */
+    border-left: 4px solid var(--accent-primary) !important;
+    background-color: var(--accent-hover-bg) !important;
     box-shadow: 0 0 12px rgba(41, 98, 255, 0.4);
 }
 
 
 /* PrismJS Syntax Highlighting Styles */
-pre[class*="language-"] {
-    background: #2d2d2d; /* Match Okaidia theme or slightly different */
-    padding: 18px 20px; /* More padding */
-    margin: 0;
-    border-radius: 5px;
-    border: 1px solid #55596e;
-    font-size: 0.9rem;
-    position: relative; /* Needed for toolbar */
-    white-space: pre-wrap;       /* Allow wrapping */
-    word-wrap: break-word;       /* Break long words */
-}
+pre[class*="language-"] { background: var(--bg-dark-tertiary); padding: 18px 20px; margin: 0; border-radius: 5px; border: 1px solid var(--border-color); font-size: 0.9rem; position: relative; white-space: pre-wrap; word-wrap: break-word; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--border-color) var(--bg-dark-tertiary); }
+pre[class*="language-"]::-webkit-scrollbar { height: 6px; width: 6px; }
+pre[class*="language-"]::-webkit-scrollbar-track { background: var(--bg-dark-tertiary); }
+pre[class*="language-"]::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 3px; }
+pre[class*="language-"]::-webkit-scrollbar-thumb:hover { background-color: #7e8a9a; }
+code[class*="language-"] { font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace; background: none; text-shadow: none; color: inherit; font-size: inherit; line-height: 1.5; }
 
-code[class*="language-"] {
-    font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace; /* Monospace font */
-    background: none; /* Ensure code tag itself has no background */
-    text-shadow: none; /* Remove default text shadow if any */
-    color: inherit; /* Inherit color from pre */
-    font-size: inherit;
-}
-
-/* Style the copy button from PrismJS Toolbar plugin */
-div.code-toolbar {
-    position: relative; /* Ensure toolbar positions correctly */
-}
-
-div.code-toolbar > .toolbar {
-    position: absolute;
-    top: 8px; /* Adjust position */
-    right: 8px;
-    opacity: 0; /* Hide initially */
-    transition: opacity 0.3s ease-in-out;
-    z-index: 3; /* Ensure button is clickable */
-}
-
-div.code-toolbar:hover > .toolbar {
-    opacity: 1; /* Show on hover */
-}
-
-.toolbar .toolbar-item button {
-    background: #55596e !important;
-    color: #f5f7ff !important;
-    box-shadow: none !important;
-    border: none !important;
-    border-radius: 4px !important;
-    padding: 6px 12px !important; /* Slightly larger button */
-    font-size: 0.8rem !important;
-    cursor: pointer;
-    transition: background-color 0.2s ease !important;
-}
-.toolbar .toolbar-item button:hover {
-    background: #2962ff !important; /* Theme color on hover */
-}
-
-/* Style for "Copied!" message */
-.toolbar .toolbar-item span[data-prismjs-copy-success] { /* Target the success message specifically */
-    display: inline-block;
-    margin-left: 0.5em;
-    padding: 2px 5px;
-    background-color: #00ab57;
-    color: #fff;
-    border-radius: 3px;
-    font-size: 0.75rem;
-    font-weight: bold;
-}
+/* PrismJS Toolbar/Copy Button (For Code Block - Separate from header copy button) */
+div.code-toolbar { position: relative; }
+div.code-toolbar > .toolbar { position: absolute; top: 8px; right: 8px; opacity: 0; transition: opacity 0.3s ease-in-out; z-index: 3; }
+div.code-toolbar:hover > .toolbar { opacity: 1; }
+.toolbar .toolbar-item button { background: var(--border-color) !important; color: var(--text-primary) !important; box-shadow: none !important; border: none !important; border-radius: 4px !important; padding: 6px 12px !important; font-size: 0.8rem !important; cursor: pointer; transition: background-color 0.2s ease !important; }
+.toolbar .toolbar-item button:hover { background: var(--accent-primary) !important; }
+.toolbar .toolbar-item span[data-prismjs-copy-success] { display: inline-block; margin-left: 0.5em; padding: 2px 5px; background-color: var(--success-color); color: #fff; border-radius: 3px; font-size: 0.75rem; font-weight: bold; }
 
 
-/* Chart Styles (Placeholder if needed later) */
-.charts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 60px;
-}
-
-.charts-card {
-  background-color: #263043;
-  margin-bottom: 20px;
-  padding: 25px;
-  box-sizing: border-box;
-  -webkit-column-break-inside: avoid;
-  border-radius: 5px;
-  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
-}
-
-.chart-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #f5f7ff;
-  font-weight: 600;
-}
+/* Chart Styles (Placeholder) */
+.charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 60px; }
+.charts-card { background-color: var(--bg-dark-secondary); margin-bottom: 20px; padding: 25px; border-radius: 5px; box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2); }
+.chart-title { display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-weight: 600; }
 
 
 /* ---------- MEDIA QUERIES ---------- */
-@media screen and (max-width: 992px) {
-  .grid-container {
-    grid-template-columns: 1fr; /* Single column */
-    grid-template-rows: 70px 1fr; /* Header, then main */
-    grid-template-areas:
-      'header'
-      'main';
-     height: 100vh;
-  }
 
-  #sidebar {
-    display: none; /* Hide static sidebar */
-  }
-  /* Responsive sidebar styles control visibility */
-  #sidebar.sidebar-responsive {
-     display: flex !important; /* Make it visible when class is added */
-   }
-
-  .menu-icon {
-    display: inline-block; /* Show menu icon */
-  }
-
-  .sidebar-title > span { /* Close icon inside responsive sidebar */
-    display: inline;
-  }
-
-  /* Adjust header layout on smaller screens */
-   .header { padding: 0 15px; }
-   .header-left { margin: 0 10px; max-width: none; /* Allow search to take more space */}
+/* Medium screens / Tablets */
+@media screen and (max-width: 1200px) {
+     /* Keep 3 columns for category cards */
+     .main-cards { grid-template-columns: repeat(3, 1fr); gap: 20px; }
 }
 
+/* Smaller Tablets / Large Phones */
+@media screen and (max-width: 992px) {
+  .grid-container { grid-template-columns: 1fr; grid-template-rows: var(--header-height) 1fr; grid-template-areas: 'header' 'main'; height: 100vh; }
+  #sidebar { display: none; }
+  #sidebar.sidebar-responsive { display: flex !important; }
+  .menu-icon { display: inline-block; }
+  .sidebar-title > span { display: inline; }
+  .header { padding: 0 15px; }
+  .header-left { margin: 0 10px; max-width: none; }
+
+  /* Dashboard grids to 2 columns */
+  .dashboard-summary { grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 30px; }
+  .main-cards { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+/* Small Phones */
 @media screen and (max-width: 768px) {
   .main-container { padding: 20px 15px; }
-  .main-cards { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
-  .card { padding: 15px; }
-  .category-card h1 { font-size: 2.2rem; }
-  .card-inner > .material-icons-outlined { font-size: 30px; }
+
+  /* Stack summary cards */
+  .dashboard-summary { grid-template-columns: 1fr; gap: 15px; }
+  /* Category cards: 2 columns still likely okay */
+  .main-cards { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+
+  .card { padding: 15px; } /* General card padding reduction */
+  .category-card h1 { font-size: 2.0rem; } /* Further reduce count size */
+  .summary-card h1 { font-size: 2.5rem; } /* Keep summary count larger */
+  .card-inner > .material-icons-outlined { font-size: 28px; } /* Smaller icons */
+
   .prompt-card { padding: 15px 20px; }
   .charts { grid-template-columns: 1fr; margin-top: 30px; }
 
-  /* Further adjust header search? */
   .header-left { margin: 0 5px; }
-  #search-input { font-size: 0.85rem; padding: 8px 8px 8px 40px; } /* Adjust padding */
-  .search-wrapper .search-icon { font-size: 20px; left: 10px; } /* Adjust icon position */
+  #search-input { font-size: 0.85rem; padding: 8px 8px 8px 40px; }
+  .search-wrapper .search-icon { font-size: 20px; left: 10px; }
 }
 
+/* Extra Small Screens */
 @media screen and (max-width: 576px) {
-  .header-left { display: none; } /* Hide search on extra small screens */
-  .header-right { flex-grow: 1; display: flex; justify-content: flex-end;} /* Ensure right icons stay right */
+  .header-left { display: none; } /* Hide search */
+  .header-right { flex-grow: 1; display: flex; justify-content: flex-end;}
   .header-right span { margin: 0 8px; font-size: 24px; }
 
   .main-title h2 { font-size: 1.3rem; }
-  .main-cards { grid-template-columns: 1fr; gap: 10px; }
-  .card { min-height: 100px; }
-  .category-card h1 { font-size: 2.0rem; }
+
+  /* Stack category cards */
+  .dashboard-summary { grid-template-columns: 1fr; gap: 15px; margin-bottom: 25px;}
+  .main-cards { grid-template-columns: 1fr; gap: 15px; } /* Now 1 column */
+
+  .card { min-height: auto; } /* Remove min height */
+  .summary-card { padding: 18px; }
+  .summary-card h1 { font-size: 2.2rem; }
+  .category-card { padding: 15px; }
+  .category-card h1 { font-size: 2.0rem; margin-top: 8px; }
+  .category-card .card-inner h3 { font-size: 0.85rem; }
+  .card-inner > .material-icons-outlined { font-size: 26px; } /* Even smaller icons */
+
 
   .sidebar-brand { font-size: 18px; }
   .sidebar-brand > .material-icons-outlined { font-size: 26px; }
-  .sidebar-list-item { padding: 12px 15px; font-size: 14px; }
+  .sidebar-list-item { padding: 12px 15px; font-size: 0.85rem; }
   .sidebar-list-item a .material-icons-outlined { font-size: 20px; margin-right: 12px; }
+
+  .prompt-card { padding: 15px; }
+  .prompt-card-title { font-size: 1rem; }
+  pre[class*="language-"] { padding: 15px; font-size: 0.85rem;}
 }
