@@ -40,6 +40,24 @@
     { "title": "Summarize Legal Case Concept", "prompt": "Provide a brief, high-level summary explaining the main legal principle or issue decided in the landmark case {case_name}. Note: This is for educational purposes only.", "language": "text" },
     { "title": "Explain Legal Term", "prompt": "Explain the legal term '{legal_term (e.g., liability, jurisdiction, intellectual property)}' in plain language, outlining its general meaning and significance. Note: This is for informational purposes only.", "language": "text" }
   ],
+   "network_troubleshooting": [
+      { "title": "Diagnose Connectivity Issue", "prompt": "My computer ({operating_system}) cannot connect to the internet. Outline the steps I should take to diagnose the problem, starting from the physical layer up to the application layer. Include specific commands where applicable (e.g., ping, ipconfig/ifconfig, traceroute).", "language": "text" },
+      { "title": "Interpret Ping Results", "prompt": "Explain what the following ping results indicate about the network connection to {destination_ip_or_hostname}:\n\n{ping_output}", "language": "text" },
+      { "title": "Identify Bottleneck (Traceroute)", "prompt": "Analyze the following traceroute output to {destination_ip_or_hostname}. Identify potential network bottlenecks or points of failure based on latency or packet loss:\n\n{traceroute_output}", "language": "text" },
+      { "title": "Troubleshoot Slow Wi-Fi", "prompt": "My Wi-Fi connection is very slow on my {device_type}. List common causes and troubleshooting steps, including checking signal strength, channel interference, router settings, and potential device issues.", "language": "text" },
+      { "title": "Check Open Ports", "prompt": "Provide the command for {operating_system} (Linux/Windows/macOS) to check which network ports are currently open and listening on the local machine.", "language": "bash" },
+      { "title": "DNS Resolution Problem", "prompt": "I can ping IP addresses like 8.8.8.8, but I cannot access websites like google.com. What are the likely causes related to DNS, and how can I troubleshoot them on {operating_system}? Include commands like nslookup or dig.", "language": "text" },
+      { "title": "Firewall Rule Check", "prompt": "Outline the process to check if a firewall ({firewall_type}, e.g., Windows Defender Firewall, iptables, ufw) might be blocking traffic for a specific application trying to reach {destination_ip}:{destination_port} on protocol {tcp_or_udp}.", "language": "text" }
+  ],
+  "osint": [
+      { "title": "Find Social Media Profiles", "prompt": "Suggest methods and tools (including specific search engine queries or specialized websites) to find social media profiles associated with the username '{username}' or the real name '{full_name}'.", "language": "text" },
+      { "title": "Website Technology Stack", "prompt": "Describe how to identify the technology stack (CMS, web server, programming languages, frameworks, analytics tools) used by the website {website_url}.", "language": "text" },
+      { "title": "Domain/IP Information", "prompt": "Outline the steps and tools (e.g., WHOIS lookup, reverse IP lookup, DNS enumeration tools) to gather information about the domain name {domain_name} or IP address {ip_address}.", "language": "text" },
+      { "title": "Search Engine Dorking (Google)", "prompt": "Provide 5 Google Dorks (advanced search queries) to find specific types of information related to '{topic}', such as login pages, specific filetypes, directory listings, or publicly exposed documents.", "language": "text" },
+      { "title": "Image Metadata Analysis", "prompt": "Explain how to potentially extract metadata (EXIF data) from an image file located at {image_url_or_path} and what kind of information (e.g., location, camera model, date/time) might be found.", "language": "text" },
+      { "title": "Company Information Gathering", "prompt": "List public sources and techniques (e.g., company registries, financial filings, LinkedIn, news archives, job postings) to gather OSINT information about the company '{company_name}'.", "language": "text" },
+      { "title": "Email Address Verification", "prompt": "Suggest methods (excluding sending an actual email) to attempt to verify if the email address '{email_address}' is likely valid or associated with a real person/service.", "language": "text" }
+  ],
   "learning": [
     { "title": "Create Study Guide Outline", "prompt": "Generate a study guide outline for the topic '{topic_name}'. Break it down into key subtopics, concepts, and potential areas for review.", "language": "text" },
     { "title": "Generate Quiz Questions", "prompt": "Create 5 multiple-choice quiz questions (with answers) covering the basics of {subject_or_topic}.", "language": "text" },
@@ -86,6 +104,12 @@
     { "title": "Draft Response (Inquiry)", "prompt": "Draft a clear and helpful response to a customer inquiry asking about {question (e.g., product features, return policy, how to use a feature)}.", "language": "text" },
     { "title": "De-escalation Phrases", "prompt": "Suggest 5 phrases that can be used in customer service to help de-escalate a situation with an upset customer.", "language": "text" }
   ],
+  "marketing": [
+    { "title": "Social Media Post", "prompt": "Draft 3 distinct social media posts for {platform (e.g., Twitter, LinkedIn, Instagram)} to announce the launch of {product/feature}. Tailor the tone and length for each platform.", "language": "text" },
+    { "title": "Headline Ideas", "prompt": "Generate 10 catchy and benefit-driven headline ideas for a landing page advertising {product/service}.", "language": "text" },
+    { "title": "Value Proposition", "prompt": "Articulate a clear and concise value proposition for {product/service} targeting {target_audience}.", "language": "text" },
+    { "title": "Target Audience Persona", "prompt": "Create a brief persona description for the ideal customer of {product/service}, including demographics, needs, pain points, and goals.", "language": "text" }
+  ],
   "science_research": [
     { "title": "Explore Hypothesis", "prompt": "Given the observation {observation}, formulate a testable scientific hypothesis to explain it. Suggest a basic experimental design concept to test this hypothesis.", "language": "text" },
     { "title": "Summarize Academic Paper Abstract", "prompt": "Summarize the key findings and conclusions from the following academic paper abstract:\n\n{paste_abstract_text}", "language": "text" },
@@ -108,31 +132,7 @@
       { "title": "Write a Poem", "prompt": "Write a short four-line poem (quatrain) about {topic} in an {style (e.g., upbeat, melancholic)} style.", "language": "text" },
       { "title": "Generate Humor Anecdote Idea", "prompt": "Generate a short, lighthearted anecdote premise involving {character_type} experiencing a funny situation related to {topic}.", "language": "text" }
   ],
-  "advanced_techniques": [
-      { "title": "Chain-of-Thought (CoT) Example", "prompt": "Solve the following reasoning problem by showing your step-by-step thinking process (Chain-of-Thought):\nProblem: {reasoning_problem_description}", "language": "text" },
-      { "title": "Tree-of-Thought (ToT) Exploration Idea", "prompt": "Outline how you might use a Tree-of-Thought approach to explore potential solutions or outcomes for the complex problem: {complex_problem_description}. Describe the branching possibilities.", "language": "text" },
-      { "title": "Retrieval Augmented Generation (RAG) Scenario", "prompt": "Imagine you need to answer the question '{complex_question_requiring_external_data}' using RAG. Describe the steps involved: 1. How would you retrieve relevant information? 2. How would you combine the retrieved information with your generative capabilities to formulate the answer?", "language": "text" }
-  ],
-
-  "network_troubleshooting": [
-      { "title": "Diagnose Connectivity Issue", "prompt": "My computer ({operating_system}) cannot connect to the internet. Outline the steps I should take to diagnose the problem, starting from the physical layer up to the application layer. Include specific commands where applicable (e.g., ping, ipconfig/ifconfig, traceroute).", "language": "text" },
-      { "title": "Interpret Ping Results", "prompt": "Explain what the following ping results indicate about the network connection to {destination_ip_or_hostname}:\n\n{ping_output}", "language": "text" },
-      { "title": "Identify Bottleneck (Traceroute)", "prompt": "Analyze the following traceroute output to {destination_ip_or_hostname}. Identify potential network bottlenecks or points of failure based on latency or packet loss:\n\n{traceroute_output}", "language": "text" },
-      { "title": "Troubleshoot Slow Wi-Fi", "prompt": "My Wi-Fi connection is very slow on my {device_type}. List common causes and troubleshooting steps, including checking signal strength, channel interference, router settings, and potential device issues.", "language": "text" },
-      { "title": "Check Open Ports", "prompt": "Provide the command for {operating_system} (Linux/Windows/macOS) to check which network ports are currently open and listening on the local machine.", "language": "bash" },
-      { "title": "DNS Resolution Problem", "prompt": "I can ping IP addresses like 8.8.8.8, but I cannot access websites like google.com. What are the likely causes related to DNS, and how can I troubleshoot them on {operating_system}? Include commands like nslookup or dig.", "language": "text" },
-      { "title": "Firewall Rule Check", "prompt": "Outline the process to check if a firewall ({firewall_type}, e.g., Windows Defender Firewall, iptables, ufw) might be blocking traffic for a specific application trying to reach {destination_ip}:{destination_port} on protocol {tcp_or_udp}.", "language": "text" }
-  ],
-  "osint": [
-      { "title": "Find Social Media Profiles", "prompt": "Suggest methods and tools (including specific search engine queries or specialized websites) to find social media profiles associated with the username '{username}' or the real name '{full_name}'.", "language": "text" },
-      { "title": "Website Technology Stack", "prompt": "Describe how to identify the technology stack (CMS, web server, programming languages, frameworks, analytics tools) used by the website {website_url}.", "language": "text" },
-      { "title": "Domain/IP Information", "prompt": "Outline the steps and tools (e.g., WHOIS lookup, reverse IP lookup, DNS enumeration tools) to gather information about the domain name {domain_name} or IP address {ip_address}.", "language": "text" },
-      { "title": "Search Engine Dorking (Google)", "prompt": "Provide 5 Google Dorks (advanced search queries) to find specific types of information related to '{topic}', such as login pages, specific filetypes, directory listings, or publicly exposed documents.", "language": "text" },
-      { "title": "Image Metadata Analysis", "prompt": "Explain how to potentially extract metadata (EXIF data) from an image file located at {image_url_or_path} and what kind of information (e.g., location, camera model, date/time) might be found.", "language": "text" },
-      { "title": "Company Information Gathering", "prompt": "List public sources and techniques (e.g., company registries, financial filings, LinkedIn, news archives, job postings) to gather OSINT information about the company '{company_name}'.", "language": "text" },
-      { "title": "Email Address Verification", "prompt": "Suggest methods (excluding sending an actual email) to attempt to verify if the email address '{email_address}' is likely valid or associated with a real person/service.", "language": "text" }
-  ],
-  "travel_itinerary": [
+   "travel_itinerary": [
       { "title": "Plan a {N}-Day Trip", "prompt": "Create a suggested {N}-day itinerary for a trip to {city_or_region}, focusing on {type_of_interest (e.g., historical sites, nature, food, relaxation)}. Include potential activities, sights, and logistical considerations (e.g., travel time between locations) for each day. Assume a budget level of {budget_level (e.g., budget, mid-range, luxury)}.", "language": "text" },
       { "title": "Activities for Family/Solo/Couple", "prompt": "Suggest 5 suitable activities or attractions in {location} for a {traveler_type (e.g., family with young children, solo traveler, couple seeking romance)}.", "language": "text" },
       { "title": "Packing List", "prompt": "Generate a suggested packing list for a {duration} trip to {destination} during {season_or_month}, considering the typical weather and planned activities like {activity_1}, {activity_2}.", "language": "text" },
@@ -140,6 +140,18 @@
       { "title": "Transportation Options", "prompt": "Outline the main transportation options for getting around {city_or_region}, including public transport (mention types like metro, bus, tram), taxis/rideshares, and walking/cycling possibilities. Mention typical costs or pass options if known.", "language": "text" },
       { "title": "Day Trip from City", "prompt": "Suggest a feasible and interesting day trip destination from {base_city}. Include how to get there, key attractions at the destination, and estimated travel time.", "language": "text" },
       { "title": "Cultural Etiquette Tips", "prompt": "Provide essential cultural etiquette tips for a traveler visiting {country_or_region}, focusing on greetings, dining, tipping, and general social interactions.", "language": "text" }
+  ],
+  "advanced_techniques": [
+      { "title": "Chain-of-Thought (CoT) Example", "prompt": "Solve the following reasoning problem by showing your step-by-step thinking process (Chain-of-Thought):\nProblem: {reasoning_problem_description}", "language": "text" },
+      { "title": "Tree-of-Thought (ToT) Exploration Idea", "prompt": "Outline how you might use a Tree-of-Thought approach to explore potential solutions or outcomes for the complex problem: {complex_problem_description}. Describe the branching possibilities.", "language": "text" },
+      { "title": "Retrieval Augmented Generation (RAG) Scenario", "prompt": "Imagine you need to answer the question '{complex_question_requiring_external_data}' using RAG. Describe the steps involved: 1. How would you retrieve relevant information? 2. How would you combine the retrieved information with your generative capabilities to formulate the answer?", "language": "text" }
+  ],
+   "coding": [
+    { "title": "Python Function", "prompt": "Write a well-commented Python function that takes a list of numbers and returns the sum of all even numbers in the list. Include error handling for non-numeric inputs.", "language": "python" },
+    { "title": "JavaScript Regex", "prompt": "Create a robust JavaScript regular expression to validate an email address according to common standards (RFC 5322 approximations).", "language": "javascript" },
+    { "title": "Explain Code Snippet", "prompt": "Explain what the following {language} code does step-by-step. Describe the purpose of each major block or function, the input it expects, and the output it produces:\n\n``` {language}\n{code_snippet}\n```", "language": "markdown" },
+    { "title": "Generate HTML Structure", "prompt": "Generate the basic HTML5 structure for a webpage with a header, main content area, sidebar, and footer.", "language": "html" },
+    { "title": "CSS Styling", "prompt": "Write CSS rules to style a button with the class '.action-button' to have a blue background, white text, rounded corners, and a subtle hover effect.", "language": "css" },
+    { "title": "SQL Query", "prompt": "Write an SQL query to select the {column_names} from the table '{table_name}' where {condition}.", "language": "sql" }
   ]
-  // The "building_habits" category was merged into "personal_development"
 }
