@@ -7,11 +7,7 @@ const sidebar = document.getElementById('sidebar');
  */
 function openSidebar() {
   if (!sidebarOpen) {
-    // Use classList add/remove for transitions defined in CSS
     sidebar.classList.add('sidebar-responsive');
-    // Add 'open' class to trigger the CSS transition defined for it
-    // Use requestAnimationFrame to ensure the 'sidebar-responsive' class is applied first,
-    // allowing the transition on 'left' (or transform) to work correctly.
     requestAnimationFrame(() => {
          sidebar.classList.add('open');
     });
@@ -25,14 +21,11 @@ function openSidebar() {
 function closeSidebar() {
   if (sidebarOpen) {
     sidebar.classList.remove('open');
-    // Remove the base class after transition duration using setTimeout
-    // or listen for the 'transitionend' event for a more robust solution.
      setTimeout(() => {
-         // Only remove if it hasn't been rapidly re-opened
          if (!sidebar.classList.contains('open')) {
             sidebar.classList.remove('sidebar-responsive');
          }
-     }, 500); // Match CSS transition duration (adjust if CSS changes)
+     }, 500); // Match CSS transition duration
     sidebarOpen = false;
   }
 }
@@ -46,8 +39,9 @@ let flatPrompts = []; // Stores [{ title, prompt, language, category }, ...] for
 const promptDisplayArea = document.getElementById('prompt-display-area');
 const sidebarListItems = document.querySelectorAll('.sidebar-list-item');
 const mainContentTitle = document.getElementById('main-content-title');
-const dashboardCardsContainer = document.getElementById('dashboard-cards');
-const promptContainer = document.getElementById('prompt-container');
+const dashboardSummaryContainer = document.getElementById('dashboard-summary-cards'); // Summary Card Container
+const dashboardCardsContainer = document.getElementById('dashboard-cards'); // Category Card Container
+const promptContainer = document.getElementById('prompt-container'); // Prompt Display Wrapper
 const searchInput = document.getElementById('search-input');
 const searchPredictions = document.getElementById('search-predictions');
 
@@ -60,15 +54,18 @@ const searchPredictions = document.getElementById('search-predictions');
 function createFlatPromptList() {
     flatPrompts = []; // Reset the flat list
     for (const categoryKey in allPromptsData) {
-        // Ensure it's a direct property and not from the prototype chain
         if (Object.prototype.hasOwnProperty.call(allPromptsData, categoryKey)) {
-            // Check if the category value is an array before iterating
             if (Array.isArray(allPromptsData[categoryKey])) {
                 allPromptsData[categoryKey].forEach(prompt => {
-                    flatPrompts.push({
-                        ...prompt, // Copy existing prompt properties (title, prompt, language)
-                        category: categoryKey // Add the category key for context
-                    });
+                    // Basic validation to ensure prompt has a title
+                    if (prompt && typeof prompt.title === 'string') {
+                        flatPrompts.push({
+                            ...prompt, // Copy existing prompt properties
+                            category: categoryKey // Add the category key
+                        });
+                    } else {
+                        console.warn(`Skipping invalid prompt object in category "${categoryKey}":`, prompt);
+                    }
                 });
             } else {
                  console.warn(`Data for category "${categoryKey}" is not an array.`);
@@ -86,20 +83,14 @@ function calculateCategoryCounts() {
     categoryCounts = []; // Reset before recalculating
     sidebarListItems.forEach(item => {
         const categoryKey = item.getAttribute('data-category');
-
-        // Skip the dashboard item itself when creating category cards
         if (!categoryKey || categoryKey === 'dashboard') return;
 
         const link = item.querySelector('a');
         const iconElement = link?.querySelector('.material-icons-outlined');
-        // Extract category name robustly from link text, removing icon text
         const categoryName = link?.textContent.replace(iconElement?.textContent || '', '').trim() || categoryKey;
-        const iconName = iconElement?.textContent.trim() || 'category'; // Default icon if not found
-
-        // Get count from the loaded data, default to 0 if category not in data or has no prompts
+        const iconName = iconElement?.textContent.trim() || 'category';
         const count = allPromptsData[categoryKey]?.length || 0;
 
-        // Store the collected info for the dashboard card
         categoryCounts.push({
             key: categoryKey,
             name: categoryName,
@@ -107,67 +98,117 @@ function calculateCategoryCounts() {
             count: count
         });
     });
-    // console.log("Calculated Category Counts:", categoryCounts); // For debugging
 }
 
 
 // --- Display Functions ---
 
 /**
- * Displays the Dashboard view with category summary cards.
+ * Displays the Dashboard view including summary and category cards.
  */
 function displayDashboard() {
-    mainContentTitle.textContent = "Dashboard"; // Set the main title
-    promptContainer.style.display = 'none'; // Hide the prompt display area
-    dashboardCardsContainer.innerHTML = ''; // Clear any existing dashboard cards
-    dashboardCardsContainer.style.display = 'grid'; // Ensure the dashboard grid is visible
+    mainContentTitle.textContent = "Dashboard";
+    promptContainer.style.display = 'none'; // Hide prompt area
+    dashboardSummaryContainer.innerHTML = ''; // Clear previous summary cards
+    dashboardCardsContainer.innerHTML = '';   // Clear previous category cards
+    dashboardSummaryContainer.style.display = 'grid'; // Show summary grid
+    dashboardCardsContainer.style.display = 'grid';   // Show category grid
 
-    // Recalculate counts just in case, though should be done after load
-    if (categoryCounts.length === 0 && Object.keys(allPromptsData).length > 0) {
-        calculateCategoryCounts();
+    // --- Create and Add Summary Cards ---
+    // Ensure counts and flat list are ready before creating summary cards
+    if (flatPrompts.length === 0 || categoryCounts.length === 0) {
+         if (Object.keys(allPromptsData).length > 0) {
+             // Data loaded, but counts missing? Recalculate.
+             createFlatPromptList(); // Ensure flat list is created too
+             calculateCategoryCounts();
+         } else {
+            // Data not loaded yet
+            dashboardSummaryContainer.innerHTML = "<p>Loading summary...</p>";
+            dashboardCardsContainer.innerHTML = "<p style='grid-column: 1 / -1;'>Loading categories...</p>";
+            // If loadPrompts failed, the error message is already handled there.
+            return; // Exit if data/counts aren't ready
+         }
     }
 
-    // Check if category counts are available
-    if (categoryCounts.length === 0) {
-        dashboardCardsContainer.innerHTML = "<p style='grid-column: 1 / -1;'>Loading category information...</p>";
-        return;
-    }
+    // Card 1: Total Prompts
+    const totalPromptsCard = document.createElement('div');
+    totalPromptsCard.className = 'card summary-card total-prompts';
+    const tpInner = document.createElement('div');
+    tpInner.className = 'card-inner';
+    const tpTitle = document.createElement('h3');
+    tpTitle.textContent = 'Total Prompts';
+    const tpIcon = document.createElement('span');
+    tpIcon.className = 'material-icons-outlined';
+    tpIcon.textContent = 'list_alt';
+    tpInner.appendChild(tpTitle);
+    tpInner.appendChild(tpIcon);
+    const tpCount = document.createElement('h1');
+    tpCount.textContent = flatPrompts.length; // Use length of the generated flat list
+    totalPromptsCard.appendChild(tpInner);
+    totalPromptsCard.appendChild(tpCount);
+    dashboardSummaryContainer.appendChild(totalPromptsCard);
 
-    // Create a card for each category
-    categoryCounts.forEach(cat => {
-        const card = document.createElement('div');
-        card.className = 'card category-card'; // Use defined styles
-        card.setAttribute('data-category-key', cat.key); // Store key for click navigation
+    // Card 2: Total Categories
+    const totalCatsCard = document.createElement('div');
+    totalCatsCard.className = 'card summary-card total-categories';
+    const tcInner = document.createElement('div');
+    tcInner.className = 'card-inner';
+    const tcTitle = document.createElement('h3');
+    tcTitle.textContent = 'Total Categories';
+    const tcIcon = document.createElement('span');
+    tcIcon.className = 'material-icons-outlined';
+    tcIcon.textContent = 'category';
+    tcInner.appendChild(tcTitle);
+    tcInner.appendChild(tcIcon);
+    const tcCount = document.createElement('h1');
+    tcCount.textContent = categoryCounts.length; // Use length of category counts array
+    totalCatsCard.appendChild(tcInner);
+    totalCatsCard.appendChild(tcCount);
+    dashboardSummaryContainer.appendChild(totalCatsCard);
 
-        const cardInner = document.createElement('div');
-        cardInner.className = 'card-inner';
-        const title = document.createElement('h3');
-        title.textContent = cat.name; // Category name
-        const iconSpan = document.createElement('span');
-        iconSpan.className = 'material-icons-outlined';
-        iconSpan.textContent = cat.icon; // Category icon
-        cardInner.appendChild(title);
-        cardInner.appendChild(iconSpan);
 
-        const countH1 = document.createElement('h1');
-        countH1.textContent = cat.count; // Number of prompts
+    // --- Create and Add Category Cards (From categoryCounts) ---
+    if (categoryCounts.length > 0) {
+        categoryCounts.forEach(cat => {
+            const card = document.createElement('div');
+            card.className = 'card category-card';
+            card.setAttribute('data-category-key', cat.key);
 
-        card.appendChild(cardInner);
-        card.appendChild(countH1);
+            const cardInner = document.createElement('div');
+            cardInner.className = 'card-inner';
+            const title = document.createElement('h3');
+            title.textContent = cat.name;
+            const iconSpan = document.createElement('span');
+            iconSpan.className = 'material-icons-outlined';
+            iconSpan.textContent = cat.icon;
+            cardInner.appendChild(title);
+            cardInner.appendChild(iconSpan);
 
-        // Add click listener to the card to navigate to the category view
-        card.addEventListener('click', () => {
-             const sidebarItem = document.querySelector(`.sidebar-list-item[data-category="${cat.key}"]`);
-             if (sidebarItem) {
-                 sidebarItem.click(); // Simulate a click on the sidebar item
-             } else {
-                 console.warn(`Dashboard card click: Sidebar item for category key "${cat.key}" not found.`);
-             }
+            const countH1 = document.createElement('h1');
+            countH1.textContent = cat.count;
+
+            card.appendChild(cardInner);
+            card.appendChild(countH1);
+
+            card.addEventListener('click', () => {
+                 const sidebarItem = document.querySelector(`.sidebar-list-item[data-category="${cat.key}"]`);
+                 if (sidebarItem) {
+                     sidebarItem.click();
+                 } else {
+                     console.warn(`Dashboard card click: Sidebar item for category key "${cat.key}" not found.`);
+                 }
+            });
+            dashboardCardsContainer.appendChild(card); // Append to category container
         });
-
-        dashboardCardsContainer.appendChild(card);
-    });
+    } else if (Object.keys(allPromptsData).length > 0) {
+        // Data loaded, but somehow no categories were processed
+         dashboardCardsContainer.innerHTML = "<p style='grid-column: 1 / -1;'>No categories found or processed.</p>";
+    } else {
+        // Still loading or error handled by loadPrompts
+         dashboardCardsContainer.innerHTML = "<p style='grid-column: 1 / -1;'>Loading categories...</p>";
+    }
 }
+
 
 /**
  * Displays the prompts for a specific category, optionally highlighting one.
@@ -178,9 +219,10 @@ function displayPrompts(categoryKey, promptToHighlight = null) {
     const categoryElement = document.querySelector(`.sidebar-list-item[data-category="${categoryKey}"] a`);
     const iconElement = categoryElement?.querySelector('.material-icons-outlined');
     const categoryName = categoryElement?.textContent.replace(iconElement?.textContent || '', '').trim() || categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1);
-    mainContentTitle.textContent = `${categoryName} Prompts`; // Update the main title
+    mainContentTitle.textContent = `${categoryName} Prompts`;
 
-    // Toggle visibility: Hide dashboard, show prompts area
+    // Hide dashboard sections, show prompts section
+    dashboardSummaryContainer.style.display = 'none';
     dashboardCardsContainer.style.display = 'none';
     promptContainer.style.display = 'block';
     promptDisplayArea.innerHTML = ''; // Clear previous prompts
@@ -188,18 +230,20 @@ function displayPrompts(categoryKey, promptToHighlight = null) {
     const prompts = allPromptsData[categoryKey];
 
     if (prompts && prompts.length > 0) {
-        // If prompts exist, create and display a card for each
         prompts.forEach(p => {
+            if (!p || typeof p.title !== 'string') {
+                console.warn(`Skipping rendering of invalid prompt object in category "${categoryKey}":`, p);
+                return;
+            }
             const card = document.createElement('div');
-            card.className = 'prompt-card'; // Style for individual prompt cards
-            // Add prompt title as a data attribute for easier selection later
+            card.className = 'prompt-card';
             card.dataset.promptTitle = p.title;
 
             const cardHeader = document.createElement('div');
             cardHeader.className = 'prompt-card-header';
             const title = document.createElement('h5');
             title.className = 'prompt-card-title';
-            title.textContent = p.title; // Prompt title
+            title.textContent = p.title;
             cardHeader.appendChild(title);
             card.appendChild(cardHeader);
 
@@ -208,24 +252,26 @@ function displayPrompts(categoryKey, promptToHighlight = null) {
             const pre = document.createElement('pre');
             const code = document.createElement('code');
             code.className = `language-${p.language || 'text'}`;
-            code.textContent = p.prompt;
+            code.textContent = p.prompt || '';
             pre.appendChild(code);
             codeContainer.appendChild(pre);
             card.appendChild(codeContainer);
             promptDisplayArea.appendChild(card);
         });
 
-        // Trigger PrismJS highlighting after adding cards to DOM
+        // Trigger Prism highlighting after elements are in the DOM
         setTimeout(() => {
-            Prism.highlightAllUnder(promptDisplayArea);
-             // If a specific prompt needs highlighting, do it after Prism runs
-             if (promptToHighlight) {
-                // A very short delay might sometimes be needed for complex DOM/Prism interactions
+            if (typeof Prism !== 'undefined' && Prism.highlightAllUnder) {
+                Prism.highlightAllUnder(promptDisplayArea);
+            } else {
+                console.warn("PrismJS not fully loaded, skipping highlighting.");
+            }
+            if (promptToHighlight) {
                 setTimeout(() => {
                     scrollToAndHighlightPrompt(promptToHighlight);
-                }, 50);
+                }, 100);
              }
-        }, 0);
+        }, 50);
 
     } else if (Object.keys(allPromptsData).length === 0 && !promptDisplayArea.querySelector('.text-danger')) {
         // Handle case where data might still be loading
@@ -235,7 +281,7 @@ function displayPrompts(categoryKey, promptToHighlight = null) {
         promptDisplayArea.innerHTML = `<p>No prompts found for the '${categoryName}' category.</p>`;
     }
 
-    // Close sidebar on mobile/tablet view after selecting a category
+    // Close sidebar on smaller screens after interaction
     if (window.innerWidth <= 992 && sidebarOpen) {
         closeSidebar();
     }
@@ -245,12 +291,18 @@ function displayPrompts(categoryKey, promptToHighlight = null) {
 
 /**
  * Finds a prompt card DOM element by its title using the data attribute.
+ * Uses CSS.escape for potentially special characters in titles.
  * @param {string} promptTitle - The title of the prompt to find.
  * @returns {HTMLElement|null} - The prompt card element or null if not found.
  */
 function findPromptCardByTitle(promptTitle) {
-    // Use querySelector with the data attribute for direct selection
-    return promptDisplayArea.querySelector(`.prompt-card[data-prompt-title="${CSS.escape(promptTitle)}"]`);
+    try {
+        const escapedTitle = CSS.escape(promptTitle);
+        return promptDisplayArea.querySelector(`.prompt-card[data-prompt-title="${escapedTitle}"]`);
+    } catch (e) {
+        console.error("Error finding prompt card with title:", promptTitle, e);
+        return null;
+    }
 }
 
 /**
@@ -260,24 +312,16 @@ function findPromptCardByTitle(promptTitle) {
 function scrollToAndHighlightPrompt(promptTitle) {
     const targetCard = findPromptCardByTitle(promptTitle);
     if (targetCard) {
-        // Remove highlight from any previously highlighted card
         document.querySelectorAll('.prompt-card.highlighted').forEach(el => el.classList.remove('highlighted'));
-
-        // Scroll into view
         targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-        // Add highlight class (ensure this class is defined in CSS)
         targetCard.classList.add('highlighted');
-
-        // Optional: Remove highlight after a delay for temporary effect
         setTimeout(() => {
-            // Check if the card still exists and has the class before removing
             if (targetCard && targetCard.classList.contains('highlighted')) {
                  targetCard.classList.remove('highlighted');
             }
-        }, 2500); // Remove highlight after 2.5 seconds
+        }, 2500); // Duration highlight stays
     } else {
-        console.warn(`Prompt card with title "${promptTitle}" not found in DOM after navigation.`);
+        console.warn(`Prompt card with title "${promptTitle}" not found in DOM for highlighting.`);
     }
 }
 
@@ -288,39 +332,41 @@ function scrollToAndHighlightPrompt(promptTitle) {
  */
 function handleSearchInput() {
     const searchTerm = searchInput.value.trim().toLowerCase();
-    searchPredictions.innerHTML = ''; // Clear previous predictions
+    searchPredictions.innerHTML = '';
 
     if (!searchTerm) {
-        searchPredictions.style.display = 'none'; // Hide dropdown if search is empty
+        searchPredictions.style.display = 'none';
         return;
     }
 
-    // Filter the flat list of prompts based on the search term in the title
+    if (!flatPrompts || flatPrompts.length === 0) {
+        console.warn("Search attempted before flatPrompts list was created.");
+        searchPredictions.style.display = 'none';
+        return;
+    }
+
     const matchingPrompts = flatPrompts.filter(prompt =>
-        prompt.title.toLowerCase().includes(searchTerm)
+        prompt && typeof prompt.title === 'string' && prompt.title.toLowerCase().includes(searchTerm)
     );
 
     if (matchingPrompts.length > 0) {
-        // Limit the number of predictions shown (e.g., top 10)
-        matchingPrompts.slice(0, 10).forEach(prompt => {
+        matchingPrompts.slice(0, 10).forEach(prompt => { // Limit results
             const item = document.createElement('div');
             item.className = 'prediction-item';
-            item.textContent = prompt.title; // Display prompt title
-            // Store data needed for navigation on the element itself
-            item.dataset.category = prompt.category; // Store category key
-            item.dataset.title = prompt.title; // Store exact title
-            item.addEventListener('click', handlePredictionClick); // Add click handler
+            item.textContent = prompt.title;
+            item.dataset.category = prompt.category;
+            item.dataset.title = prompt.title;
+            item.addEventListener('click', handlePredictionClick);
             searchPredictions.appendChild(item);
         });
     } else {
-        // Show a "No results" message if no prompts match
         const noResults = document.createElement('div');
         noResults.className = 'no-results';
         noResults.textContent = 'No results found';
         searchPredictions.appendChild(noResults);
     }
 
-    searchPredictions.style.display = 'block'; // Show predictions container
+    searchPredictions.style.display = 'block';
 }
 
 /**
@@ -329,29 +375,25 @@ function handleSearchInput() {
  * @param {Event} event - The click event object.
  */
 function handlePredictionClick(event) {
-    const targetItem = event.currentTarget; // The prediction item div that was clicked
+    const targetItem = event.currentTarget;
     const categoryKey = targetItem.dataset.category;
     const promptTitle = targetItem.dataset.title;
 
     if (categoryKey && promptTitle) {
-        // 1. Find and visually activate the corresponding sidebar item
         const sidebarItem = document.querySelector(`.sidebar-list-item[data-category="${categoryKey}"]`);
         if (sidebarItem) {
-            sidebarListItems.forEach(i => i.classList.remove('active')); // Deactivate others
-            sidebarItem.classList.add('active'); // Activate clicked one
+            sidebarListItems.forEach(i => i.classList.remove('active'));
+            sidebarItem.classList.add('active');
         } else {
             console.warn(`Prediction click: Sidebar item for category "${categoryKey}" not found.`);
         }
 
-        // 2. Display the prompts for the target category, passing the title to highlight
-        displayPrompts(categoryKey, promptTitle);
+        displayPrompts(categoryKey, promptTitle); // Navigate and request highlight
 
-        // 3. Clean up search UI
-        searchInput.value = ''; // Clear the search input
-        searchPredictions.style.display = 'none'; // Hide the predictions dropdown
+        searchInput.value = ''; // Clear search
+        searchPredictions.style.display = 'none'; // Hide predictions
 
-         // 4. Close sidebar on mobile if open
-        if (window.innerWidth <= 992 && sidebarOpen) {
+        if (window.innerWidth <= 992 && sidebarOpen) { // Close mobile sidebar
              closeSidebar();
          }
 
@@ -366,136 +408,116 @@ function handlePredictionClick(event) {
  * Fetches prompt data from prompts.json, processes it, and displays the initial view.
  */
 async function loadPrompts() {
+  // Ensure containers exist before proceeding
+  if (!dashboardSummaryContainer || !dashboardCardsContainer || !promptContainer) {
+       console.error("Essential dashboard or prompt containers not found in the DOM.");
+       return; // Stop execution if critical elements are missing
+  }
+
   try {
-    const response = await fetch('prompts.json'); // Assumes prompts.json is in the same directory as index.html
-    if (!response.ok) {
-        // Handle specific HTTP errors like 404
-        throw new Error(`HTTP error! Status: ${response.status}. Failed to fetch 'prompts.json'.`);
-    }
-    // Parse the JSON data
+    const response = await fetch('prompts.json');
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}. Failed to fetch 'prompts.json'.`);
     allPromptsData = await response.json();
     console.log("Prompts data loaded successfully.");
 
-    // Process data *after* it's successfully loaded
     createFlatPromptList(); // Create the searchable list
     calculateCategoryCounts(); // Calculate counts for the dashboard
 
-    // Display the initial view (Dashboard)
-    displayDashboard();
+    displayDashboard(); // Display initial view
 
   } catch (error) {
-    // Handle errors during fetch, JSON parsing, or initial processing
     console.error("Error loading or processing prompts:", error);
-    // Display a user-friendly error message in the main content area (dashboard initially)
-    dashboardCardsContainer.style.display = 'grid'; // Ensure grid for message layout
-    promptContainer.style.display = 'none'; // Hide prompt area
-    // Use template literal for cleaner message formatting
+    // Display error in both summary and category areas for visibility
+    dashboardSummaryContainer.style.display = 'grid';
+    dashboardCardsContainer.style.display = 'grid';
+    promptContainer.style.display = 'none';
+    dashboardSummaryContainer.innerHTML = `<p class="text-danger" style="color: var(--danger-color);">Error loading summary.</p>`;
     dashboardCardsContainer.innerHTML = `
-        <p class="text-danger" style="grid-column: 1 / -1; color: #ff6d00; padding: 20px; background-color: #263043; border-radius: 5px;">
+        <p class="text-danger" style="grid-column: 1 / -1; color: var(--danger-color); padding: 20px; background-color: var(--bg-dark-secondary); border-radius: 5px;">
             <strong>Error loading prompts:</strong> ${error.message}. Please check if 'prompts.json' exists and is valid JSON.
         </p>`;
   }
 }
 
 
-// --- Event Listeners ---
+// --- Event Listeners Setup ---
 
-// --- Sidebar Navigation ---
-sidebarListItems.forEach(item => {
-  item.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default anchor link behavior
+/**
+ * Attaches all necessary event listeners after the DOM is loaded.
+ */
+function setupEventListeners() {
+    // --- Sidebar Navigation ---
+    if (sidebarListItems.length > 0) {
+        sidebarListItems.forEach(item => {
+          item.addEventListener('click', (event) => {
+            event.preventDefault();
+            sidebarListItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            const category = item.getAttribute('data-category');
 
-    // Update active state in sidebar
-    sidebarListItems.forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
+            if (category === 'dashboard') {
+                if(Object.keys(allPromptsData).length > 0) {
+                     if(categoryCounts.length === 0) calculateCategoryCounts(); // Ensure counts are ready
+                     displayDashboard();
+                } else { console.warn("Dashboard clicked before data loaded."); /* Show loading state maybe */ }
+            } else if (category) {
+                if (Object.keys(allPromptsData).length > 0) {
+                    displayPrompts(category);
+                } else { console.warn("Prompt category clicked before data loaded."); /* Show loading state */ }
+            } else { console.warn("Clicked sidebar item missing 'data-category' attribute."); }
 
-    const category = item.getAttribute('data-category');
-
-    // Navigate to the appropriate view
-    if (category === 'dashboard') {
-        // Ensure data/counts are ready before displaying dashboard
-        if(Object.keys(allPromptsData).length > 0) { // Check if base data loaded
-             if(categoryCounts.length === 0) calculateCategoryCounts(); // Recalculate if needed
-             displayDashboard();
-        } else {
-            // Data not loaded yet, show loading state (or error if load failed)
-            console.warn("Dashboard clicked before data loaded.");
-            dashboardCardsContainer.style.display = 'grid';
-            promptContainer.style.display = 'none';
-            if (!dashboardCardsContainer.querySelector('.text-danger')) { // Avoid overwriting error message
-                dashboardCardsContainer.innerHTML = "<p style='grid-column: 1 / -1;'>Loading data...</p>";
-            }
-        }
-    } else if (category) {
-        // Navigate to prompt category view
-        if (Object.keys(allPromptsData).length > 0) {
-            displayPrompts(category); // Don't highlight when clicking sidebar directly
-        } else {
-             console.warn("Prompt category clicked before data loaded.");
-             promptContainer.style.display = 'block'; // Show prompt container
-             dashboardCardsContainer.style.display = 'none'; // Hide dashboard
-             promptDisplayArea.innerHTML = '<p>Loading prompts, please wait...</p>';
-        }
+            if (window.innerWidth <= 992 && sidebarOpen) closeSidebar();
+            if (searchInput) searchInput.value = ''; // Clear search on sidebar navigation
+            if (searchPredictions) searchPredictions.style.display = 'none';
+          });
+        });
     } else {
-        console.warn("Clicked sidebar item missing 'data-category' attribute.");
+        console.warn("No sidebar list items found to attach listeners.");
     }
 
-    // Close sidebar on smaller screens after interaction
-    if (window.innerWidth <= 992 && sidebarOpen) closeSidebar();
+    // --- Sidebar Overlay Closing ---
+    document.addEventListener('click', function(event) {
+      if (!sidebarOpen) return;
+      const isMenuIcon = event.target.closest('.menu-icon');
+      const isInsideSidebar = sidebar.contains(event.target);
+      if (!isMenuIcon && !isInsideSidebar) {
+        closeSidebar();
+      }
+    });
 
-    // Clear search and hide predictions when navigating via sidebar
-    searchInput.value = '';
-    searchPredictions.style.display = 'none';
-  });
-});
-
-// --- Sidebar Overlay Closing ---
-document.addEventListener('click', function(event) {
-  // Only act if sidebar is open
-  if (!sidebarOpen) return;
-
-  // Check if the click target is the menu icon itself or an element inside it
-  const isMenuIcon = event.target.classList.contains('menu-icon') || event.target.closest('.menu-icon');
-  // Check if the click target is inside the sidebar element
-  const isInsideSidebar = sidebar.contains(event.target);
-
-  // If the click is NOT the menu icon and NOT inside the sidebar, close it
-  if (!isMenuIcon && !isInsideSidebar) {
-    closeSidebar();
-  }
-});
-
-// --- Search Functionality Listeners ---
-// Handle input typing in the search bar
-searchInput.addEventListener('input', handleSearchInput);
-
-// Hide search predictions when clicking anywhere outside the search wrapper
-document.addEventListener('click', function(event) {
-    const isClickInsideSearchWrapper = event.target.closest('.search-wrapper');
-    if (!isClickInsideSearchWrapper) {
-        searchPredictions.style.display = 'none'; // Hide predictions
+    // --- Search Functionality Listeners ---
+    if (searchInput) {
+        searchInput.addEventListener('input', handleSearchInput);
+    } else {
+        console.error("Search input element (#search-input) not found.");
     }
-});
 
-// Hide search predictions on Escape key press
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' || event.key === 'Esc') { // Handle older browser variations
-        searchPredictions.style.display = 'none';
-        // Optionally blur the input to remove focus
-        // searchInput.blur();
-    }
-});
+    // Hide search predictions when clicking anywhere outside the search wrapper
+    document.addEventListener('click', function(event) {
+        const isClickInsideSearchWrapper = event.target.closest('.search-wrapper');
+        if (!isClickInsideSearchWrapper && searchPredictions) {
+            searchPredictions.style.display = 'none';
+        }
+    });
 
-// Focus listener for search input (optional: show recent searches or suggestions on focus)
-// searchInput.addEventListener('focus', () => {
-//     // Potentially show recent searches or trigger initial suggestions
-//     // if (searchInput.value.trim()) handleSearchInput(); // Show suggestions if text already exists
-//     console.log("Search focused");
-// });
-
+    // Hide search predictions on Escape key press
+    document.addEventListener('keydown', function(event) {
+        if ((event.key === 'Escape' || event.key === 'Esc') && searchPredictions) {
+            searchPredictions.style.display = 'none';
+        }
+    });
+}
 
 // --- Initial Application Load ---
-// Start the entire process by fetching the prompt data.
-// loadPrompts() handles subsequent steps like processing data and displaying the initial view.
-document.addEventListener('DOMContentLoaded', loadPrompts);
-// Using DOMContentLoaded ensures the script runs after the basic HTML structure is ready.
+// Wait for the DOM to be fully loaded before setting up listeners and loading data
+document.addEventListener('DOMContentLoaded', () => {
+    // Ensure essential DOM elements exist before proceeding
+     if (!sidebar || !mainContentTitle || !dashboardSummaryContainer || !dashboardCardsContainer || !promptContainer) {
+          console.error("One or more critical layout elements are missing. Aborting script initialization.");
+          // Optionally display an error message to the user in the body
+          document.body.innerHTML = "<p style='color: red; padding: 20px;'>Error: Application UI elements missing. Cannot initialize.</p>";
+          return;
+     }
+    setupEventListeners(); // Attach listeners
+    loadPrompts();       // Load data and display initial view
+});
