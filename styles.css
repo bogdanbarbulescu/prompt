@@ -466,5 +466,24 @@ div.code-toolbar:hover > .toolbar {
       font-size: 20px;
       margin-right: 12px;
   }
+  /* --- Prompt Card Highlighting --- */
+.prompt-card.highlighted {
+    /* Choose one or combine highlighting methods */
+
+    /* Method 1: Border */
+    /* border: 1px solid #2962ff; */
+    border-left: 4px solid #2962ff !important; /* Stronger left border */
+
+    /* Method 2: Background Tint */
+    background-color: rgba(41, 98, 255, 0.15) !important; /* Subtle background tint */
+
+    /* Method 3: Box Shadow */
+    box-shadow: 0 0 12px rgba(41, 98, 255, 0.4);
+
+    /* Method 4: Scale (Use sparingly) */
+    /* transform: scale(1.01); */
+
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition in/out */
+}
 
 }
