@@ -41,66 +41,172 @@
         </header>
         <!-- End Header -->
 
-        <!-- Sidebar -->
-        <aside id="sidebar">
-            <div class="sidebar-title">
-                <div class="sidebar-brand">
-                    <span class="material-icons-outlined">model_training</span> Prompt Lib
-                </div>
-                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
-            </div>
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">model_training</span> Prompt Lib
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
 
-            <ul class="sidebar-list">
-                <!-- Categories will be added here dynamically or statically -->
-                <li class="sidebar-list-item active" data-category="general">
-                    <a href="#">
-                        <span class="material-icons-outlined">description</span> General
-                    </a>
-                </li>
-                <li class="sidebar-list-item" data-category="coding">
-                    <a href="#">
-                        <span class="material-icons-outlined">code</span> Coding
-                    </a>
-                </li>
-                <li class="sidebar-list-item" data-category="writing">
-                    <a href="#">
-                        <span class="material-icons-outlined">edit</span> Writing
-                    </a>
-                </li>
-                <li class="sidebar-list-item" data-category="marketing">
-                    <a href="#">
-                        <span class="material-icons-outlined">campaign</span> Marketing
-                    </a>
-                </li>
-            <!-- ... other list items ... -->
-            <li class="sidebar-list-item" data-category="network_troubleshooting">
+        <ul class="sidebar-list">
+          <!-- General -->
+          <li class="sidebar-list-item active" data-category="general">
+              <a href="#">
+                  <span class="material-icons-outlined">description</span> General
+              </a>
+          </li>
+
+          <!-- Technical and Professional -->
+          <li class="sidebar-list-item" data-category="data_analysis">
+                <a href="#">
+                    <span class="material-icons-outlined">analytics</span> Data Analysis
+                </a>
+          </li>
+           <li class="sidebar-list-item" data-category="software_dev">
+                <a href="#">
+                    <span class="material-icons-outlined">terminal</span> Software Dev
+                </a>
+            </li>
+            <li class="sidebar-list-item" data-category="cybersecurity">
+                <a href="#">
+                    <span class="material-icons-outlined">security</span> Cybersecurity
+                </a>
+            </li>
+            <li class="sidebar-list-item" data-category="project_management">
+                 <a href="#">
+                     <span class="material-icons-outlined">account_tree</span> Project Mgmt
+                 </a>
+             </li>
+             <li class="sidebar-list-item" data-category="legal">
+                 <a href="#">
+                     <span class="material-icons-outlined">gavel</span> Legal Assist
+                 </a>
+             </li>
+             <li class="sidebar-list-item" data-category="network_troubleshooting">
                 <a href="#">
                     <span class="material-icons-outlined">router</span> Network Troubleshoot
                 </a>
-            </li>
-            <li class="sidebar-list-item" data-category="osint">
+             </li>
+              <li class="sidebar-list-item" data-category="osint">
+                 <a href="#">
+                     <span class="material-icons-outlined">public</span> OSINT
+                 </a>
+             </li>
+
+             <!-- Educational -->
+             <li class="sidebar-list-item" data-category="learning">
+                 <a href="#">
+                     <span class="material-icons-outlined">school</span> Learning Assist
+                 </a>
+             </li>
+              <li class="sidebar-list-item" data-category="language_learning">
+                 <a href="#">
+                     <span class="material-icons-outlined">translate</span> Language Learning
+                 </a>
+             </li>
+             <li class="sidebar-list-item" data-category="exam_prep">
+                 <a href="#">
+                     <span class="material-icons-outlined">assignment_turned_in</span> Exam Prep
+                 </a>
+             </li>
+
+            <!-- Creative -->
+            <li class="sidebar-list-item" data-category="storytelling">
                 <a href="#">
-                    <span class="material-icons-outlined">public</span> OSINT
+                    <span class="material-icons-outlined">auto_stories</span> Storytelling
                 </a>
             </li>
-            <li class="sidebar-list-item" data-category="travel_itinerary">
+            <li class="sidebar-list-item" data-category="art_design">
+                 <a href="#">
+                     <span class="material-icons-outlined">palette</span> Art & Design
+                 </a>
+             </li>
+             <li class="sidebar-list-item" data-category="music">
+                 <a href="#">
+                     <span class="material-icons-outlined">music_note</span> Music Composition
+                 </a>
+             </li>
+
+             <!-- Business and Marketing -->
+             <li class="sidebar-list-item" data-category="business_strategy">
+                  <a href="#">
+                      <span class="material-icons-outlined">insights</span> Business Strategy
+                  </a>
+              </li>
+              <li class="sidebar-list-item" data-category="content_creation">
+                 <a href="#">
+                     <span class="material-icons-outlined">article</span> Content Creation
+                 </a>
+             </li>
+             <li class="sidebar-list-item" data-category="customer_service">
+                 <a href="#">
+                     <span class="material-icons-outlined">support_agent</span> Customer Service
+                 </a>
+             </li>
+             <li class="sidebar-list-item" data-category="marketing"> <!-- Kept original marketing category -->
                 <a href="#">
-                    <span class="material-icons-outlined">flight_takeoff</span> Travel Itinerary
+                    <span class="material-icons-outlined">campaign</span> Marketing
                 </a>
             </li>
-            <li class="sidebar-list-item" data-category="building_habits">
-                <a href="#">
-                    <span class="material-icons-outlined">checklist</span> Building Habits
-                </a>
-            </li>
-            <li class="sidebar-list-item" data-category="fun">
+
+            <!-- Science and Research -->
+            <li class="sidebar-list-item" data-category="science_research">
+                 <a href="#">
+                     <span class="material-icons-outlined">biotech</span> Science/Research
+                 </a>
+             </li>
+
+             <!-- Personal Development -->
+              <li class="sidebar-list-item" data-category="personal_development"> <!-- Renamed from building_habits -->
+                 <a href="#">
+                     <span class="material-icons-outlined">spa</span> Personal Dev
+                 </a>
+             </li>
+
+            <!-- Entertainment -->
+             <li class="sidebar-list-item" data-category="games_puzzles">
+                 <a href="#">
+                     <span class="material-icons-outlined">extension</span> Games & Puzzles
+                 </a>
+             </li>
+             <li class="sidebar-list-item" data-category="fun"> <!-- Kept original fun category -->
                  <a href="#">
                     <span class="material-icons-outlined">sentiment_satisfied</span> Fun
                  </a>
             </li>
-          </ul>
+
+             <!-- Other/Meta -->
+              <li class="sidebar-list-item" data-category="travel_itinerary"> <!-- Kept original travel category -->
+                <a href="#">
+                    <span class="material-icons-outlined">flight_takeoff</span> Travel Itinerary
+                </a>
+            </li>
+            <li class="sidebar-list-item" data-category="advanced_techniques">
+                 <a href="#">
+                     <span class="material-icons-outlined">psychology_alt</span> Advanced Techniques
+                 </a>
+             </li>
+
+             <!-- Original coding/devops kept for reference -->
+             <li class="sidebar-list-item" data-category="coding">
+                <a href="#">
+                    <span class="material-icons-outlined">code</span> Coding
+                </a>
+             </li>
+             <!-- <li class="sidebar-list-item">
+               <a href="#" target="_blank">
+                 <span class="material-icons-outlined">settings</span> DevOps  <! - - Consider if this fits better under Software Dev or needs its own prompts ->
+               </a>
+             </li> -->
+        </ul>
       </aside>
-        <!-- End Sidebar -->
+      <!-- End Sidebar -->
+  
+           
+  
+           
 
         <!-- Main -->
         <main class="main-container">
