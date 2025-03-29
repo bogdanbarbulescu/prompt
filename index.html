@@ -28,57 +28,190 @@
                 <span class="material-icons-outlined">menu</span>
             </div>
 
-            <!-- MODIFIED: Header Left for Search -->
+            <!-- Header Left: Search -->
             <div class="header-left">
                 <div class="search-wrapper">
                     <span class="material-icons-outlined search-icon">search</span>
-                    <input type="search" id="search-input" placeholder="Search Prompts...">
+                    <input type="search" id="search-input" placeholder="Search Prompts..." autocomplete="off">
                     <div id="search-predictions">
-                        <!-- Prediction results will appear here -->
+                        <!-- Prediction results appear here via JS -->
                     </div>
                 </div>
             </div>
-            <!-- END MODIFIED Header Left -->
+            <!-- End Header Left -->
+
+            <!-- Header Right: Icons -->
+            <div class="header-right">
+                <span class="material-icons-outlined">notifications</span>
+                <span class="material-icons-outlined">email</span>
+                <span class="material-icons-outlined">account_circle</span>
+            </div>
+            <!-- End Header Right -->
 
         </header>
         <!-- End Header -->
 
         <!-- Sidebar -->
         <aside id="sidebar">
-             <div class="sidebar-title">
-                 <div class="sidebar-brand">
-                     <span class="material-icons-outlined">model_training</span> Prompt Lib
-                 </div>
-                 <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
-             </div>
-             {/* --- The rest of the sidebar list remains the same --- */}
-             <ul class="sidebar-list">
-                <li class="sidebar-list-item active" data-category="dashboard"> <a href="#"><span class="material-icons-outlined">dashboard</span> Dashboard</a> </li>
-                <li class="sidebar-list-item" data-category="general"> <a href="#"><span class="material-icons-outlined">description</span> General</a> </li>
-                <li class="sidebar-list-item" data-category="data_analysis"> <a href="#"><span class="material-icons-outlined">analytics</span> Data Analysis</a> </li>
-                <li class="sidebar-list-item" data-category="software_dev"> <a href="#"><span class="material-icons-outlined">terminal</span> Software Dev</a> </li>
-                <li class="sidebar-list-item" data-category="cybersecurity"> <a href="#"><span class="material-icons-outlined">security</span> Cybersecurity</a> </li>
-                <li class="sidebar-list-item" data-category="project_management"> <a href="#"><span class="material-icons-outlined">account_tree</span> Project Mgmt</a> </li>
-                <li class="sidebar-list-item" data-category="legal"> <a href="#"><span class="material-icons-outlined">gavel</span> Legal Assist</a> </li>
-                <li class="sidebar-list-item" data-category="network_troubleshooting"> <a href="#"><span class="material-icons-outlined">router</span> Network Troubleshoot</a> </li>
-                <li class="sidebar-list-item" data-category="osint"> <a href="#"><span class="material-icons-outlined">public</span> OSINT</a> </li>
-                <li class="sidebar-list-item" data-category="learning"> <a href="#"><span class="material-icons-outlined">school</span> Learning Assist</a> </li>
-                <li class="sidebar-list-item" data-category="language_learning"> <a href="#"><span class="material-icons-outlined">translate</span> Language Learning</a> </li>
-                <li class="sidebar-list-item" data-category="exam_prep"> <a href="#"><span class="material-icons-outlined">assignment_turned_in</span> Exam Prep</a> </li>
-                <li class="sidebar-list-item" data-category="storytelling"> <a href="#"><span class="material-icons-outlined">auto_stories</span> Storytelling</a> </li>
-                <li class="sidebar-list-item" data-category="art_design"> <a href="#"><span class="material-icons-outlined">palette</span> Art & Design</a> </li>
-                <li class="sidebar-list-item" data-category="music"> <a href="#"><span class="material-icons-outlined">music_note</span> Music Composition</a> </li>
-                <li class="sidebar-list-item" data-category="business_strategy"> <a href="#"><span class="material-icons-outlined">insights</span> Business Strategy</a> </li>
-                <li class="sidebar-list-item" data-category="content_creation"> <a href="#"><span class="material-icons-outlined">article</span> Content Creation</a> </li>
-                <li class="sidebar-list-item" data-category="customer_service"> <a href="#"><span class="material-icons-outlined">support_agent</span> Customer Service</a> </li>
-                <li class="sidebar-list-item" data-category="marketing"> <a href="#"><span class="material-icons-outlined">campaign</span> Marketing</a> </li>
-                <li class="sidebar-list-item" data-category="science_research"> <a href="#"><span class="material-icons-outlined">biotech</span> Science/Research</a> </li>
-                <li class="sidebar-list-item" data-category="personal_development"> <a href="#"><span class="material-icons-outlined">spa</span> Personal Dev</a> </li>
-                <li class="sidebar-list-item" data-category="games_puzzles"> <a href="#"><span class="material-icons-outlined">extension</span> Games & Puzzles</a> </li>
-                <li class="sidebar-list-item" data-category="fun"> <a href="#"><span class="material-icons-outlined">sentiment_satisfied</span> Fun</a> </li>
-                <li class="sidebar-list-item" data-category="travel_itinerary"> <a href="#"><span class="material-icons-outlined">flight_takeoff</span> Travel Itinerary</a> </li>
-                <li class="sidebar-list-item" data-category="advanced_techniques"> <a href="#"><span class="material-icons-outlined">psychology_alt</span> Advanced Techniques</a> </li>
-                <li class="sidebar-list-item" data-category="coding"> <a href="#"><span class="material-icons-outlined">code</span> Coding</a> </li>
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">model_training</span> Prompt Lib
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
+
+            <ul class="sidebar-list">
+                 <!-- Dashboard Link (active by default) -->
+                 <li class="sidebar-list-item active" data-category="dashboard">
+                    <a href="#">
+                        <span class="material-icons-outlined">dashboard</span> Dashboard
+                    </a>
+                </li>
+
+                <!-- General -->
+                <li class="sidebar-list-item" data-category="general">
+                    <a href="#">
+                        <span class="material-icons-outlined">description</span> General
+                    </a>
+                </li>
+
+                <!-- Technical and Professional -->
+                <li class="sidebar-list-item" data-category="data_analysis">
+                      <a href="#">
+                          <span class="material-icons-outlined">analytics</span> Data Analysis
+                      </a>
+                </li>
+                 <li class="sidebar-list-item" data-category="software_dev">
+                      <a href="#">
+                          <span class="material-icons-outlined">terminal</span> Software Dev
+                      </a>
+                  </li>
+                  <li class="sidebar-list-item" data-category="cybersecurity">
+                      <a href="#">
+                          <span class="material-icons-outlined">security</span> Cybersecurity
+                      </a>
+                  </li>
+                  <li class="sidebar-list-item" data-category="project_management">
+                       <a href="#">
+                           <span class="material-icons-outlined">account_tree</span> Project Mgmt
+                       </a>
+                   </li>
+                   <li class="sidebar-list-item" data-category="legal">
+                       <a href="#">
+                           <span class="material-icons-outlined">gavel</span> Legal Assist
+                       </a>
+                   </li>
+                   <li class="sidebar-list-item" data-category="network_troubleshooting">
+                      <a href="#">
+                          <span class="material-icons-outlined">router</span> Network Troubleshoot
+                      </a>
+                   </li>
+                    <li class="sidebar-list-item" data-category="osint">
+                       <a href="#">
+                           <span class="material-icons-outlined">public</span> OSINT
+                       </a>
+                   </li>
+
+                   <!-- Educational -->
+                   <li class="sidebar-list-item" data-category="learning">
+                       <a href="#">
+                           <span class="material-icons-outlined">school</span> Learning Assist
+                       </a>
+                   </li>
+                    <li class="sidebar-list-item" data-category="language_learning">
+                       <a href="#">
+                           <span class="material-icons-outlined">translate</span> Language Learning
+                       </a>
+                   </li>
+                   <li class="sidebar-list-item" data-category="exam_prep">
+                       <a href="#">
+                           <span class="material-icons-outlined">assignment_turned_in</span> Exam Prep
+                       </a>
+                   </li>
+
+                  <!-- Creative -->
+                  <li class="sidebar-list-item" data-category="storytelling">
+                      <a href="#">
+                          <span class="material-icons-outlined">auto_stories</span> Storytelling
+                      </a>
+                  </li>
+                  <li class="sidebar-list-item" data-category="art_design">
+                       <a href="#">
+                           <span class="material-icons-outlined">palette</span> Art & Design
+                       </a>
+                   </li>
+                   <li class="sidebar-list-item" data-category="music">
+                       <a href="#">
+                           <span class="material-icons-outlined">music_note</span> Music Composition
+                       </a>
+                   </li>
+
+                   <!-- Business and Marketing -->
+                   <li class="sidebar-list-item" data-category="business_strategy">
+                        <a href="#">
+                            <span class="material-icons-outlined">insights</span> Business Strategy
+                        </a>
+                    </li>
+                    <li class="sidebar-list-item" data-category="content_creation">
+                       <a href="#">
+                           <span class="material-icons-outlined">article</span> Content Creation
+                       </a>
+                   </li>
+                   <li class="sidebar-list-item" data-category="customer_service">
+                       <a href="#">
+                           <span class="material-icons-outlined">support_agent</span> Customer Service
+                       </a>
+                   </li>
+                   <li class="sidebar-list-item" data-category="marketing">
+                      <a href="#">
+                          <span class="material-icons-outlined">campaign</span> Marketing
+                      </a>
+                  </li>
+
+                  <!-- Science and Research -->
+                  <li class="sidebar-list-item" data-category="science_research">
+                       <a href="#">
+                           <span class="material-icons-outlined">biotech</span> Science/Research
+                       </a>
+                   </li>
+
+                   <!-- Personal Development -->
+                    <li class="sidebar-list-item" data-category="personal_development">
+                       <a href="#">
+                           <span class="material-icons-outlined">spa</span> Personal Dev
+                       </a>
+                   </li>
+
+                  <!-- Entertainment -->
+                   <li class="sidebar-list-item" data-category="games_puzzles">
+                       <a href="#">
+                           <span class="material-icons-outlined">extension</span> Games & Puzzles
+                       </a>
+                   </li>
+                   <li class="sidebar-list-item" data-category="fun">
+                       <a href="#">
+                          <span class="material-icons-outlined">sentiment_satisfied</span> Fun
+                       </a>
+                  </li>
+
+                   <!-- Other/Meta -->
+                    <li class="sidebar-list-item" data-category="travel_itinerary">
+                      <a href="#">
+                          <span class="material-icons-outlined">flight_takeoff</span> Travel Itinerary
+                      </a>
+                  </li>
+                  <li class="sidebar-list-item" data-category="advanced_techniques">
+                       <a href="#">
+                           <span class="material-icons-outlined">psychology_alt</span> Advanced Techniques
+                       </a>
+                   </li>
+
+                   <!-- Original coding -->
+                   <li class="sidebar-list-item" data-category="coding">
+                      <a href="#">
+                          <span class="material-icons-outlined">code</span> Coding
+                      </a>
+                   </li>
             </ul>
         </aside>
         <!-- End Sidebar -->
@@ -86,34 +219,38 @@
         <!-- Main -->
         <main class="main-container">
             <div class="main-title">
-                <h2 id="main-content-title">Dashboard</h2>
+                <h2 id="main-content-title">Dashboard</h2> <!-- Title updated by JS -->
             </div>
 
+            <!-- Dashboard Card Container (Visible initially) -->
             <div id="dashboard-cards" class="main-cards">
-                <!-- Dashboard cards loaded here -->
+                <!-- Dashboard cards loaded here by JS -->
+                <p style="grid-column: 1 / -1;">Loading dashboard...</p> <!-- Placeholder -->
             </div>
 
+            <!-- Prompt Display Container (Hidden initially) -->
             <div id="prompt-container" style="display: none;">
                 <div id="prompt-display-area" class="mt-4">
-                    <!-- Prompts loaded here -->
+                    <!-- Prompts loaded here by JS -->
                 </div>
             </div>
 
         </main>
         <!-- End Main -->
 
-    </div>
+    </div> <!-- End Grid Container -->
 
+    <!-- Scripts -->
     <!-- PrismJS Core -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <!-- PrismJS Autoloader -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" integrity="sha512-9khQRAUBYEJDCDVP2ywQjhCUंबितAmXuLFkt7SLnHWXoNgvicAOAJgCVHUUMfxE8ek5Apk1D+YFXXxCmrkTfP8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- PrismJS Autoloader (loads languages automatically based on class="language-...") -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjKK+LIfWJviUIpkdhX2NpaCxfOMAU9bqT7T4Eh/T3j+vBEP3obN1C7w07AZ3BQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- PrismJS Toolbar -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
-    <!-- PrismJS Copy to Clipboard -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js" integrity="sha512-stTzFGgaApETuvA6zwjBfkg8nMhJkQ86SEKBPQ9oDKeYcknmD3Z9QViLG7NqG1wL5fi2NvP7ckAXL78bAFLXUA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- PrismJS Copy to Clipboard Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js" integrity="sha512-/kVH1kTcdj+Mru+qS+CrPMAEzL4PVnA+AeoK5dGmy5g/+zfA/8p/Jgtzp9XHhlbM/A0ahphjNiT7GAEWQlwAxw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- Custom JS -->
+    <!-- Your Custom JS -->
     <script src="scripts.js"></script>
 </body>
 </html>
