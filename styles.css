@@ -10,7 +10,7 @@ body {
 .material-icons-outlined {
   vertical-align: middle;
   line-height: 1px;
-  font-size: 28px; /* Adjusted default icon size */
+  font-size: 28px; /* Default icon size */
 }
 
 /* --- Grid Layout --- */
@@ -35,29 +35,121 @@ body {
   box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
   background-color: #263043; /* Header background */
   z-index: 10; /* Ensure header is above other content if needed */
-  position: relative;
+  position: relative; /* Needed for search predictions positioning */
 }
 
 .menu-icon {
   display: none; /* Hidden by default, shown in media query */
   cursor: pointer;
   color: #9e9ea4;
+  padding: 10px; /* Add padding for easier clicking */
 }
 .menu-icon:hover {
     color: #f5f7ff;
 }
 
+/* --- Header Left: Search --- */
+.header-left {
+    flex-grow: 1; /* Allow search to take available space */
+    margin: 0 20px; /* Add some margin around search */
+    max-width: 600px; /* Optional: Limit max width of search */
+}
 
-.header-left span,
+.search-wrapper {
+    position: relative; /* Needed for absolute positioning of icon and predictions */
+    display: flex;
+    align-items: center;
+    background-color: #1d2634; /* Match main background */
+    border-radius: 20px; /* Rounded corners */
+    padding: 0 10px; /* Padding inside wrapper */
+    border: 1px solid #55596e;
+    transition: border-color 0.2s ease;
+}
+.search-wrapper:focus-within { /* Style when input inside is focused */
+    border-color: #2962ff;
+}
+
+.search-wrapper .search-icon {
+    color: #9e9ea4;
+    font-size: 24px;
+    position: absolute; /* Position icon inside */
+    left: 15px; /* Adjust icon position */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent icon from interfering with input click */
+}
+
+#search-input {
+    flex-grow: 1; /* Input takes remaining space */
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #f5f7ff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    padding: 10px 15px 10px 45px; /* Right/Top/Bottom padding, Left padding for icon */
+    width: 100%; /* Ensure it fills flex item */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+#search-input::placeholder {
+    color: #7e8a9a;
+    opacity: 0.8;
+}
+
+#search-predictions {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: calc(100% + 5px); /* Position below the search wrapper */
+    left: 0;
+    right: 0; /* Span full width of wrapper */
+    background-color: #263043; /* Match header/sidebar */
+    border: 1px solid #55596e;
+    border-radius: 5px;
+    max-height: 300px; /* Limit height and make scrollable */
+    overflow-y: auto;
+    z-index: 15; /* Ensure it's above main content, maybe above sidebar */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#search-predictions .prediction-item {
+    padding: 10px 15px;
+    color: #e0e0e0;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border-bottom: 1px solid #3a465a; /* Separator line */
+    transition: background-color 0.2s ease;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if text too long */
+}
+#search-predictions .prediction-item:last-child {
+    border-bottom: none;
+}
+
+#search-predictions .prediction-item:hover {
+    background-color: rgba(41, 98, 255, 0.3); /* Highlight on hover */
+    color: #f5f7ff;
+}
+
+#search-predictions .no-results {
+    padding: 15px;
+    color: #9e9ea4;
+    font-size: 0.85rem;
+    text-align: center;
+    cursor: default;
+}
+
+/* --- Header Right: Icons --- */
 .header-right span {
     color: #9e9ea4;
-    margin: 0 10px;
+    margin: 0 10px; /* Spacing between icons */
     cursor: pointer;
-    font-size: 26px; /* Slightly smaller icons in header */
+    font-size: 26px; /* Icon size */
+    transition: color 0.2s ease;
 }
-.header-left span:hover,
 .header-right span:hover {
-    color: #f5f7ff;
+    color: #f5f7ff; /* Brighter color on hover */
 }
 
 
@@ -144,23 +236,32 @@ body {
   display: flex;
   align-items: center;
   width: 100%; /* Ensure link takes full width */
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis if too long */
 }
 .sidebar-list-item a .material-icons-outlined {
     margin-right: 15px;
     font-size: 22px;
+    flex-shrink: 0; /* Prevent icon from shrinking */
 }
 
 
 .sidebar-responsive {
   display: flex !important; /* Use flex here too */
   position: fixed; /* Use fixed for overlay behavior */
-  left: 0;
+  left: -260px; /* Start off-screen for transition */
   top: 0;
   width: 260px;
   height: 100%; /* Take full viewport height */
   z-index: 12 !important; /* Ensure it's above other content */
   box-shadow: 5px 0 15px rgba(0,0,0,0.2); /* Add shadow for overlay */
+  transition: left 0.5s ease; /* CSS transition for sliding */
 }
+.sidebar-responsive.open {
+    left: 0; /* Slide in */
+}
+
 
 /* ---------- MAIN ---------- */
 .main-container {
@@ -188,7 +289,7 @@ body {
   margin: 25px 0;
 }
 
-/* --- General Card Styling (Base for Category Cards) --- */
+/* General Card Styling (Base for Category Cards) */
 .card {
   display: flex;
   flex-direction: column;
@@ -201,7 +302,7 @@ body {
   min-height: 130px; /* Slightly taller cards */
 }
 
-/* --- Dashboard Category Card Specific Styles --- */
+/* Dashboard Category Card Specific Styles */
 .category-card {
     background-color: #263043; /* Darker background like sidebar/charts */
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -227,7 +328,6 @@ body {
     color: #7e8a9a; /* Dim the count slightly */
 }
 
-
 .card-inner {
   display: flex;
   align-items: flex-start; /* Align items to top */
@@ -238,10 +338,11 @@ body {
   font-size: 35px; /* Slightly smaller icon */
    opacity: 0.6; /* Make icon more subtle */
    margin-left: 10px; /* Space between title and icon */
+   flex-shrink: 0;
 }
 
 
-/* --- Prompt Display Area Styles --- */
+/* Prompt Display Area Styles */
 #prompt-container {
     /* Controlled by inline style and JS */
 }
@@ -253,6 +354,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(85, 89, 110, 0.25);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Add for highlight */
 }
 
 .prompt-card-header {
@@ -270,8 +372,15 @@ body {
     color: #e0e0e0;
 }
 
-/* --- PrismJS Syntax Highlighting Styles --- */
-/* Override default Prism theme background if needed to match */
+/* --- Prompt Card Highlighting --- */
+.prompt-card.highlighted {
+    border-left: 4px solid #2962ff !important; /* Stronger left border */
+    background-color: rgba(41, 98, 255, 0.15) !important; /* Subtle background tint */
+    box-shadow: 0 0 12px rgba(41, 98, 255, 0.4);
+}
+
+
+/* PrismJS Syntax Highlighting Styles */
 pre[class*="language-"] {
     background: #2d2d2d; /* Match Okaidia theme or slightly different */
     padding: 18px 20px; /* More padding */
@@ -286,8 +395,11 @@ pre[class*="language-"] {
 
 code[class*="language-"] {
     font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace; /* Monospace font */
+    background: none; /* Ensure code tag itself has no background */
+    text-shadow: none; /* Remove default text shadow if any */
+    color: inherit; /* Inherit color from pre */
+    font-size: inherit;
 }
-
 
 /* Style the copy button from PrismJS Toolbar plugin */
 div.code-toolbar {
@@ -322,16 +434,20 @@ div.code-toolbar:hover > .toolbar {
     background: #2962ff !important; /* Theme color on hover */
 }
 
-/* Optional: Style for "Copied!" message */
-.toolbar .toolbar-item span {
+/* Style for "Copied!" message */
+.toolbar .toolbar-item span[data-prismjs-copy-success] { /* Target the success message specifically */
     display: inline-block;
     margin-left: 0.5em;
-    font-size: 0.8rem;
-    color: #00ab57; /* Success color */
+    padding: 2px 5px;
+    background-color: #00ab57;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: bold;
 }
 
 
-/* --- Chart Styles (From Original Template - Keep if charts are added later) --- */
+/* Chart Styles (Placeholder if needed later) */
 .charts {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -357,9 +473,8 @@ div.code-toolbar:hover > .toolbar {
   font-weight: 600;
 }
 
-/* ---------- MEDIA QUERIES ---------- */
 
-/* Medium <= 992px */
+/* ---------- MEDIA QUERIES ---------- */
 @media screen and (max-width: 992px) {
   .grid-container {
     grid-template-columns: 1fr; /* Single column */
@@ -371,119 +486,53 @@ div.code-toolbar:hover > .toolbar {
   }
 
   #sidebar {
-    display: none; /* Hide sidebar, rely on responsive version */
+    display: none; /* Hide static sidebar */
   }
+  /* Responsive sidebar styles control visibility */
+  #sidebar.sidebar-responsive {
+     display: flex !important; /* Make it visible when class is added */
+   }
 
   .menu-icon {
     display: inline-block; /* Show menu icon */
   }
 
-  /* Ensure responsive sidebar also gets hidden/shown */
-  #sidebar.sidebar-responsive {
-     left: -260px; /* Start off-screen */
-     display: flex !important; /* Override display: none */
-     transition: left 0.5s ease; /* Smooth transition */
-   }
-  #sidebar.sidebar-responsive.open { /* Add 'open' class via JS */
-    left: 0; /* Slide in */
-  }
-
   .sidebar-title > span { /* Close icon inside responsive sidebar */
     display: inline;
   }
+
+  /* Adjust header layout on smaller screens */
+   .header { padding: 0 15px; }
+   .header-left { margin: 0 10px; max-width: none; /* Allow search to take more space */}
 }
 
-/* Small <= 768px */
 @media screen and (max-width: 768px) {
-  .main-container {
-      padding: 20px 15px;
-  }
-  .main-cards {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller min width */
-    gap: 15px;
-  }
-  .card {
-      padding: 15px;
-  }
-  .category-card h1 {
-      font-size: 2.2rem;
-  }
-   .card-inner > .material-icons-outlined {
-      font-size: 30px;
-  }
+  .main-container { padding: 20px 15px; }
+  .main-cards { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+  .card { padding: 15px; }
+  .category-card h1 { font-size: 2.2rem; }
+  .card-inner > .material-icons-outlined { font-size: 30px; }
+  .prompt-card { padding: 15px 20px; }
+  .charts { grid-template-columns: 1fr; margin-top: 30px; }
 
-  .prompt-card {
-      padding: 15px 20px;
-  }
-
-  .charts { /* Stack charts */
-    grid-template-columns: 1fr;
-    margin-top: 30px;
-  }
+  /* Further adjust header search? */
+  .header-left { margin: 0 5px; }
+  #search-input { font-size: 0.85rem; padding: 8px 8px 8px 40px; } /* Adjust padding */
+  .search-wrapper .search-icon { font-size: 20px; left: 10px; } /* Adjust icon position */
 }
 
-
-/* Extra Small <= 576px */
 @media screen and (max-width: 576px) {
-  .header {
-      padding: 0 15px; /* Reduce header padding */
-  }
-  .header-left {
-    /* Optionally hide search on very small screens */
-     display: none;
-  }
-  .header-right span {
-      margin: 0 5px; /* Reduce spacing */
-      font-size: 24px; /* Smaller icons */
-  }
+  .header-left { display: none; } /* Hide search on extra small screens */
+  .header-right { flex-grow: 1; display: flex; justify-content: flex-end;} /* Ensure right icons stay right */
+  .header-right span { margin: 0 8px; font-size: 24px; }
 
-  .main-title h2 {
-      font-size: 1.3rem;
-  }
+  .main-title h2 { font-size: 1.3rem; }
+  .main-cards { grid-template-columns: 1fr; gap: 10px; }
+  .card { min-height: 100px; }
+  .category-card h1 { font-size: 2.0rem; }
 
-  .main-cards {
-    grid-template-columns: 1fr; /* Single column */
-    gap: 10px;
-  }
-  .card {
-      min-height: 100px;
-  }
-  .category-card h1 {
-      font-size: 2.0rem;
-  }
-
-  .sidebar-brand {
-      font-size: 18px;
-  }
-   .sidebar-brand > .material-icons-outlined {
-      font-size: 26px;
-  }
-   .sidebar-list-item {
-      padding: 12px 15px;
-      font-size: 14px;
-  }
-  .sidebar-list-item a .material-icons-outlined {
-      font-size: 20px;
-      margin-right: 12px;
-  }
-  /* --- Prompt Card Highlighting --- */
-.prompt-card.highlighted {
-    /* Choose one or combine highlighting methods */
-
-    /* Method 1: Border */
-    /* border: 1px solid #2962ff; */
-    border-left: 4px solid #2962ff !important; /* Stronger left border */
-
-    /* Method 2: Background Tint */
-    background-color: rgba(41, 98, 255, 0.15) !important; /* Subtle background tint */
-
-    /* Method 3: Box Shadow */
-    box-shadow: 0 0 12px rgba(41, 98, 255, 0.4);
-
-    /* Method 4: Scale (Use sparingly) */
-    /* transform: scale(1.01); */
-
-    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition in/out */
-}
-
+  .sidebar-brand { font-size: 18px; }
+  .sidebar-brand > .material-icons-outlined { font-size: 26px; }
+  .sidebar-list-item { padding: 12px 15px; font-size: 14px; }
+  .sidebar-list-item a .material-icons-outlined { font-size: 20px; margin-right: 12px; }
 }
