@@ -300,14 +300,6 @@
         "language": "python"
       }
     ],
-    "image_creation": [
-      {
-        "title": "Generate Regex from Requirements",
-        "prompt": "Convert the following natural language requirements into a regex string:\n\n- The string must have 2-63 characters.\n- It should be alphanumeric and may include hyphens (-).\n- It must start and end with an alphanumeric character.\n\nProvide only the regex string.",
-        "language": "text"
-      }
-    ],
-
       "image_creation": [
         {
           "title": "Photorealistic Portrait",
