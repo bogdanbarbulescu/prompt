@@ -22,7 +22,7 @@ A professional, responsive web application UI for storing, organizing, searching
     *   View and modify the prompt text in a dedicated input area.
     *   See the original prompt for reference.
     *   Reset input to the original prompt text.
-    *   Direct search buttons to query the (modified) prompt on ChatGPT, Google AI Studio (Gemini), and Perplexity.
+    *   Direct search buttons to query the (modified) prompt on ChatGPT and Perplexity.
 *   **Responsive Design:** Adapts layout for various screen sizes (desktop, tablet, mobile).
 *   **Theme:** Clean, dark theme consistent across all components.
 *   **Modern Tech Stack:** Built with vanilla HTML5, CSS3 (with variables), and modern JavaScript (ES6+).
