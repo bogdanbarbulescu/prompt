@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>LLM Prompt Library</title>
 
+        <!-- SEO Meta Tags -->
+    <meta name="description" content="Explore a comprehensive library of LLM prompts for AI-powered creativity, productivity, and innovation. Discover expertly crafted prompts for image generation, text completion, and more.">
+    <meta name="keywords" content="LLM prompts, AI prompt library, large language model prompts, image generation prompts, text completion prompts, GPT-4 prompts, AI creativity tools, prompt engineering, SEO optimized prompts">
+    <meta name="author" content="Bogdan Barbulescu">
+
     <!-- Montserrat Font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -48,10 +53,13 @@
         <aside id="sidebar">
             <div class="sidebar-title">
                 <div class="sidebar-brand">
-                    <span class="material-icons-outlined">model_training</span>LLM Prompt Lib
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <span class="material-icons-outlined">model_training</span> LLM Prompt Lib
+                    </a>
                 </div>
                 <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
             </div>
+            
 
 
             <ul class="sidebar-list">
@@ -278,11 +286,20 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="modal-reset-btn" class="modal-btn btn-secondary">Reset Input</button>
-                <button id="modal-search-chatgpt" class="modal-btn btn-primary">ChatGPT Search</button>
-                <button id="modal-search-gemini" class="modal-btn btn-primary">Google AI Studio Search</button>
-                <button id="modal-search-perplexity" class="modal-btn btn-primary">Perplexity Search</button>
+                <button id="modal-reset-btn" class="modal-btn btn-secondary">
+                    <span class="material-icons-outlined">refresh</span> Reset Input
+                </button>
+                <button id="modal-search-chatgpt" class="modal-btn btn-primary">
+                    <span class="material-icons-outlined">smart_toy</span> ChatGPT Search
+                </button>
+                <button id="modal-search-gemini" class="modal-btn btn-primary">
+                    <span class="material-icons-outlined">auto_awesome</span> Google AI Studio Search
+                </button>
+                <button id="modal-search-perplexity" class="modal-btn btn-primary">
+                    <span class="material-icons-outlined">search</span> Perplexity Search
+                </button>
             </div>
+            
         </div>
     </div>
 
