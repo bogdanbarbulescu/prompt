@@ -61,7 +61,7 @@ To run this project locally:
     *   **If you have Python 3 installed:** Run `python -m http.server` in the project directory and navigate to `http://localhost:8000`.
     *   **Using VS Code:** Install the "Live Server" extension and click "Go Live".
 
-##  kullanım
+##  Usage
 
 1.  **Dashboard:** The initial view shows summary statistics and cards for each prompt category. Click a category card to navigate directly.
 2.  **Sidebar:** Use the sidebar to navigate between the Dashboard and different prompt categories.
