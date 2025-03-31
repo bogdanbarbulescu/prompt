@@ -29,8 +29,8 @@ A professional, responsive web application UI for storing, organizing, searching
 
 ## 🚀 Live Demo
 
-[**View Live Demo**](https://YourUsername.github.io/YourRepoName/)
-*(Replace `YourUsername` and `YourRepoName` with your actual GitHub details)*
+[**View Live Demo**](https://bogdanbarbulescu.github.io/prompt/)
+
 
 ## 🛠️ Technologies Used
 
@@ -114,8 +114,4 @@ Please ensure your code follows the existing style and maintains functionality.
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 *(Make sure you have a LICENSE file in your repository, typically containing the standard MIT License text)*
 
-## 🙏 Acknowledgements (Optional)
-
-*   Inspiration from [Original Template/Source if applicable].
-*   Thanks to the creators of Prism.js.
-*   ... any other libraries or resources you used.
+## 🙏 Made by Bogdan Barbulescu
