@@ -111,7 +111,6 @@ Please ensure your code follows the existing style and maintains functionality.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-*(Make sure you have a LICENSE file in your repository, typically containing the standard MIT License text)*
+This project is licensed under the MIT License [LICENSE](LICENSE).
 
 ## 🙏 Made by Bogdan Barbulescu
