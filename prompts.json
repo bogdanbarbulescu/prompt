@@ -186,11 +186,7 @@
     { "title": "Prioritize Tasks", "prompt": "Given the following list of project tasks, suggest a prioritization method (e.g., Eisenhower Matrix, MoSCoW) and categorize them accordingly:\nTasks:\n- {Task 1}\n- {Task 2}\n- {Task 3}\n...", "language": "text" },
     { "title": "Assess Project Risks", "prompt": "Identify 3 potential risks for a project involving {project_context (e.g., developing a new mobile app, migrating a database)}. For each risk, suggest a possible mitigation strategy.", "language": "text" }
   ],
-  "legal": [
-    { "title": "Draft Simple Contract Clause", "prompt": "Draft a basic contract clause covering {subject (e.g., confidentiality, payment terms, termination)} for an agreement between {Party A} and {Party B}. Use clear and standard language. Note: This is for informational purposes only, consult a legal professional.", "language": "text" },
-    { "title": "Summarize Legal Case Concept", "prompt": "Provide a brief, high-level summary explaining the main legal principle or issue decided in the landmark case {case_name}. Note: This is for educational purposes only.", "language": "text" },
-    { "title": "Explain Legal Term", "prompt": "Explain the legal term '{legal_term (e.g., liability, jurisdiction, intellectual property)}' in plain language, outlining its general meaning and significance. Note: This is for informational purposes only.", "language": "text" }
-  ],
+
    "network_troubleshooting": [
       { "title": "Diagnose Connectivity Issue", "prompt": "My computer ({operating_system}) cannot connect to the internet. Outline the steps I should take to diagnose the problem, starting from the physical layer up to the application layer. Include specific commands where applicable (e.g., ping, ipconfig/ifconfig, traceroute).", "language": "text" },
       { "title": "Interpret Ping Results", "prompt": "Explain what the following ping results indicate about the network connection to {destination_ip_or_hostname}:\n\n{ping_output}", "language": "text" },
@@ -235,11 +231,6 @@
     { "title": "Generate Design Ideas", "prompt": "Generate 3 distinct design ideas for a {type_of_design (e.g., logo, website homepage, book cover)} for a brand/product related to {industry_or_topic}. Describe the visual elements and mood.", "language": "text" },
     { "title": "Describe Color Palette", "prompt": "Suggest a color palette (provide 3-5 color hex codes or names) that evokes a feeling of {mood_or_concept (e.g., calmness, energy, luxury)} and explain the reasoning.", "language": "text" }
   ],
-  "music": [
-    { "title": "Generate Lyric Ideas", "prompt": "Generate lyrical themes and key phrases for a song about {topic_or_emotion} in the style of {musical_genre_or_artist}.", "language": "text" },
-    { "title": "Suggest Chord Progression", "prompt": "Suggest a common chord progression (e.g., I-V-vi-IV) suitable for a {musical_genre (e.g., pop, blues, folk)} song in the key of {key (e.g., C Major, A minor)}. Explain the feel of the progression.", "language": "text" },
-    { "title": "Brainstorm Song Structure", "prompt": "Outline a typical song structure (e.g., Verse-Chorus-Verse-Chorus-Bridge-Chorus-Outro) for a {genre} song. Briefly describe the purpose of each section.", "language": "text" }
-  ],
    "business_strategy": [
     { "title": "Outline Business Plan Section", "prompt": "Outline the key components to include in the '{section_name (e.g., Market Analysis, Marketing and Sales Strategy, Financial Projections)}' section of a business plan for a company offering {product_or_service}.", "language": "text" },
     { "title": "Develop Market Entry Strategy Ideas", "prompt": "Suggest 3 potential market entry strategies for introducing {product_or_service} into the {target_market}. Briefly describe the pros and cons of each.", "language": "text" },
@@ -266,11 +257,7 @@
       { "title": "Design Escape Room Puzzle Concept", "prompt": "Outline a concept for a puzzle to be used in an escape room with the theme '{room_theme}'. Describe the puzzle type (e.g., logic, pattern, physical) and how players would solve it.", "language": "text" },
       { "title": "Create Riddle", "prompt": "Write an original riddle where the answer is '{the_answer}'.", "language": "text" }
   ],
-  "fun": [
-      { "title": "Tell a Joke", "prompt": "Tell me a short, clever, SFW joke related to {subject}.", "language": "text" },
-      { "title": "Write a Poem", "prompt": "Write a short four-line poem (quatrain) about {topic} in an {style (e.g., upbeat, melancholic)} style.", "language": "text" },
-      { "title": "Generate Humor Anecdote Idea", "prompt": "Generate a short, lighthearted anecdote premise involving {character_type} experiencing a funny situation related to {topic}.", "language": "text" }
-  ],
+
    "travel_itinerary": [
       { "title": "Plan a {N}-Day Trip", "prompt": "Create a suggested {N}-day itinerary for a trip to {city_or_region}, focusing on {type_of_interest (e.g., historical sites, nature, food, relaxation)}. Include potential activities, sights, and logistical considerations (e.g., travel time between locations) for each day. Assume a budget level of {budget_level (e.g., budget, mid-range, luxury)}.", "language": "text" },
       { "title": "Activities for Family/Solo/Couple", "prompt": "Suggest 5 suitable activities or attractions in {location} for a {traveler_type (e.g., family with young children, solo traveler, couple seeking romance)}.", "language": "text" },
@@ -295,5 +282,73 @@
     { "title": "REST API Endpoint Design", "prompt": "Design a REST API endpoint (including HTTP method, URL path, potential request body parameters, and expected success/error responses) for the action: {action_description (e.g., 'creating a new user', 'retrieving a specific product by ID', 'updating an order status')}.", "language": "text" },
     { "title": "Debug Common Error Message", "prompt": "Explain the common causes and potential solutions for the following error message in {language_or_framework}: '{error_message_text}'", "language": "text" },
     { "title": "Autonomous Code Testing & Improvement Agent", "prompt": "**Role:** Assume the role of a **Meticulous Autonomous Code Analysis Agent**. Your primary functions are to test code against provided specifications, identify deviations or areas for enhancement, and iteratively refine the code.\n\n**Objective:** Systematically analyze, simulate testing, identify issues, and generate improved versions of an initial code snippet until it satisfies all requirements and passes all test cases, or until a specified iteration limit is reached.\n\n**Inputs:**\n\n1.  **Programming Language:** `{LANGUAGE}`\n2.  **Initial Code Snippet:**\n    ``` {LANGUAGE}\n    {INITIAL_CODE}\n    ```\n3.  **Requirements Description:**\n    `{REQUIREMENTS}`\n4.  **Test Cases:** (Provided as Input -> Expected Output pairs)\n    `{TEST_CASES}`\n    *   Example Format:\n        *   Test 1: Input: `[Input Value/Args]`, Expected Output: `[Expected Result]`\n        *   Test 2: Input: `[Input Value/Args]`, Expected Output: `[Expected Result]`\n        *   ...\n5.  **Maximum Iterations:** `{MAX_ITERATIONS}`\n\n**Process:**\n\n1.  **Initial Analysis:**\n    *   Briefly confirm understanding of the code's purpose based on the requirements.\n    *   Acknowledge the language and test cases provided.\n2.  **Iterative Refinement Loop (Repeat up to `MAX_ITERATIONS` times):**\n    *   **A. Simulate Test Execution:**\n        *   For *each* test case provided, perform a step-by-step simulated execution of the *current* code version.\n        *   **Crucially, document the predicted output for each test case based on your simulation.**\n        *   Compare your predicted output against the expected output.\n        *   Determine if the test case result is `Pass` or `Fail`. If `Fail`, briefly state the discrepancy.\n    *   **B. Identify Issues & Prioritize:**\n        *   Based on the simulated test results, list all identified issues. Prioritize them as follows:\n            1.  **Correctness Errors:** Code produces incorrect output for specified test cases or clearly violates requirements.\n            2.  **Potential Edge Case Failures:** Identify inputs not covered by tests where the code might fail or behave unexpectedly.\n            3.  **Inefficiencies:** Suggest improvements for performance (time/space complexity) if obvious.\n            4.  **Readability/Style:** Note violations of common {LANGUAGE} style conventions or areas where clarity can be improved.\n        *   If all tests passed *and* no critical issues (like unhandled edge cases) are identified, proceed to **Termination**.\n    *   **C. Generate Revised Code & Explain:**\n        *   If issues were identified, generate a *new, complete version* of the code snippet addressing the *highest priority* issues first.\n        *   Provide a clear, concise explanation linking each change directly to the issue(s) it resolves. Focus on *why* the change was made.\n    *   **D. Check Iteration Limit:** If the maximum number of iterations has been reached, proceed to **Termination**.\n3.  **Termination:**\n    *   State the final status: `Complete` (all tests passed, no critical issues) or `Stopped - Max Iterations Reached`.\n    *   Provide the final version of the code.\n    *   If stopped due to iterations, briefly list any outstanding high-priority issues.\n\n**Output Format:**\n\n**Initial Analysis:**\n*   **Understood Goal:** [Brief confirmation, e.g., \"Code aims to calculate factorial\"]\n*   **Language:** {LANGUAGE}\n*   **Test Cases Acknowledged:** [Number]\n\n---\n\n**Iteration: [1 to MAX_ITERATIONS]**\n*   **Status:** [Testing / Improving]\n*   **Simulated Test Results:**\n    *   Test Case 1: Input: `[Input]` -> Predicted: `[Output]` | Expected: `[Output]` | Result: [Pass/Fail - Brief reason if Fail]\n    *   Test Case 2: Input: `[Input]` -> Predicted: `[Output]` | Expected: `[Output]` | Result: [Pass/Fail - Brief reason if Fail]\n    *   ...\n*   **Issues Identified (Prioritized):**\n    1.  [Highest priority issue description]\n    2.  [Next priority issue description]\n    *   ... (List only if issues exist)\n*   **Revised Code:** (Only if issues were identified and changes made)\n    ``` {LANGUAGE}\n    [Revised code snippet]\n    ```\n*   **Explanation of Changes:** (Only if Revised Code is provided)\n    *   [Change 1: Explain what was changed and why, linking to an issue #]\n    *   [Change 2: Explain what was changed and why, linking to an issue #]\n    *   ...\n\n---\n\n**(Repeat Iteration Block)**\n\n---\n\n**Final Output:**\n*   **Final Status:** [Complete / Stopped - Max Iterations Reached]\n*   **Final Code:**\n    ``` {LANGUAGE}\n    [Final code snippet]\n    ```\n*   **Outstanding Issues (If Status is Stopped):**\n    *   [Brief description of unresolved high-priority issues]\n\n**Constraints & Guidance:**\n\n*   **Simulation Only:** You *cannot* execute code. All testing is based on your step-by-step simulation and analysis.\n*   **Show Your Work:** Clearly document predicted outputs during simulation.\n*   **Clarity and Conciseness:** Explain changes and issues directly and avoid unnecessary verbosity.\n*   **Focus on Improvement:** Address identified issues systematically based on priority.\n*   **Adhere to Language Best Practices:** Consider standard {LANGUAGE} conventions when suggesting improvements.\n*   **No External Tools:** Operate solely based on the provided inputs.\n*   **Do Not Ask Questions:** Proceed based on the information given unless a critical ambiguity *prevents* any analysis.\n\n**Now, begin with the Initial Analysis.**", "language": "markdown" }
-  ]
+  ],
+    "regex_creation": [
+      {
+        "title": "Generate Regex from Requirements",
+        "prompt": "Convert the following natural language requirements into a regex string:\n\n- The string must have 2-63 characters.\n- It should be alphanumeric and may include hyphens (-).\n- It must start and end with an alphanumeric character.\n\nProvide only the regex string.",
+        "language": "text"
+      },
+      {
+        "title": "Explain the Regex",
+        "prompt": "Provide a detailed explanation of the generated regex string. Break down each component of the regex and explain how it meets the given requirements. Include a few examples demonstrating valid and invalid strings.",
+        "language": "text"
+      },
+      {
+        "title": "Python Code for Regex Demonstration",
+        "prompt": "Write Python code that uses the re module to demonstrate the use of the generated regex. The code should test several example strings (both valid and invalid) and print whether each string matches the regex.",
+        "language": "python"
+      }
+    ],
+    "image_creation": [
+      {
+        "title": "Generate Regex from Requirements",
+        "prompt": "Convert the following natural language requirements into a regex string:\n\n- The string must have 2-63 characters.\n- It should be alphanumeric and may include hyphens (-).\n- It must start and end with an alphanumeric character.\n\nProvide only the regex string.",
+        "language": "text"
+      }
+    ],
+
+      "image_creation": [
+        {
+          "title": "Photorealistic Portrait",
+          "prompt": "Professional headshot of a middle-aged business executive with salt and pepper hair, sharp blue eyes, wearing a tailored navy suit against a neutral gray background. Studio lighting with soft shadows, shallow depth of field, shot on a Canon EOS R5 with 85mm lens at f/1.8, ultra-detailed facial features, subtle smile, 8k resolution.",
+          "language": "text"
+        },
+        {
+          "title": "Fantasy Landscape",
+          "prompt": "Majestic floating islands covered in lush vegetation and ancient stone temples, connected by crystalline waterfalls that flow into the misty abyss below. Golden hour lighting with sun rays piercing through cloud layers, epic scale, hyperrealistic detail, vibrant but natural colors, cinematic wide-angle composition, inspired by Avatar and Studio Ghibli, 8k resolution.",
+          "language": "text"
+        },
+        {
+          "title": "Product Photography",
+          "prompt": "Minimalist product shot of a sleek smartphone with glossy black finish on pure white background. Perfect studio lighting with subtle reflections on surface, ultra-sharp focus, commercial photography style, professional product placement, advertising quality, no shadows, hyper-detailed, 8k resolution.",
+          "language": "text"
+        },
+        {
+          "title": "Artistic Concept",
+          "prompt": "Abstract representation of human consciousness as a network of glowing neural pathways forming the silhouette of a human head. Deep blues and purples transitioning to vibrant oranges and yellows, intricate fractal patterns, digital art style, dramatic lighting from within, 16:9 aspect ratio, 8k resolution.",
+          "language": "text"
+        },
+        {
+          "title": "Character Design",
+          "prompt": "Full body character design of a post-apocalyptic survivor, female, mid-30s, athletic build, wearing tactical gear with makeshift armor made from scavenged materials. Battle-worn appearance, determined expression, standing in three-quarter view pose, detailed texture on clothing and equipment, muted color palette with teal and rust accents, illustration style combining realism and concept art techniques, clean background, 8k resolution.",
+          "language": "text"
+        },
+        {
+          "title": "Food Photography",
+          "prompt": "Overhead shot of an artisanal charcuterie board with assorted cheeses, cured meats, fresh fruits, honey, and crusty bread arranged on a rustic wooden board. Natural window lighting from the left creating gentle shadows, shallow depth of field, vibrant but natural colors, fine details on food textures, mouth-watering appearance, professional food photography style, 8k resolution.",
+          "language": "text"
+        },
+        {
+          "title": "Architectural Visualization",
+          "prompt": "Photorealistic exterior rendering of a modern minimalist beachfront villa with floor-to-ceiling glass walls, clean geometric lines, sustainable materials including exposed concrete and natural wood. Golden hour lighting, manicured landscape with native plants, infinity pool reflecting sunset colors, ultra-wide angle view showcasing the connection between interior and exterior spaces, architectural visualization style, 8k resolution.",
+          "language": "text"
+        },
+        {
+          "title": "Stylized Illustration",
+          "prompt": "Whimsical illustration of a cozy bookstore cafe with floor-to-ceiling bookshelves, mismatched vintage furniture, and patrons reading while enjoying coffee. Warm color palette dominated by amber and mahogany tones, soft diffused lighting streaming through large windows, detailed storybook illustration style inspired by Disney and Studio Ghibli, rich textures, 8k resolution.",
+          "language": "text"
+        }
+      ]
+
 }
