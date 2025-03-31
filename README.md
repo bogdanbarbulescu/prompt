@@ -4,7 +4,7 @@
 
 A professional, responsive web application UI for storing, organizing, searching, and utilizing prompts for Large Language Models (LLMs). Built with HTML, CSS (including CSS Variables for theming), and modern JavaScript.
 
-![App Screenshot]([link/to/your/screenshot.png](https://github.com/bogdanbarbulescu/prompt/blob/main/LLM-Prompt-Lib.jpg))
+![App Screenshot](https://github.com/bogdanbarbulescu/prompt/blob/main/LLM-Prompt-Lib.jpg)
 *(Replace above line with a link to a screenshot of your application. Consider using a tool like [ScreenToGif](https://www.screentogif.com/) or similar to create an animated GIF showcasing the features!)*
 
 ## ✨ Features
