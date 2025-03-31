@@ -47,10 +47,10 @@ To run this project locally:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/YourUsername/YourRepoName.git
-    cd YourRepoName
+    git clone https://github.com/bogdanbarbulescu/prompt.git
+    cd prompt
     ```
-    *(Replace `YourUsername` and `YourRepoName`)*
+
 
 2.  **Open `index.html`:**
     *   Simply open the `index.html` file directly in your web browser.
