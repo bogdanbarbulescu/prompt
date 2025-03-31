@@ -653,11 +653,25 @@ div.code-toolbar:hover > .toolbar { opacity: 1; }
 
 /* --- Modal Styles --- */
 .modal-overlay {
-    position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.7); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s;
 }
 .modal-overlay.visible { opacity: 1; visibility: visible; transition: opacity 0.3s ease, visibility 0s linear 0s; }
 
-.modal-content { background-color: var(--bg-dark-secondary); padding: 25px 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); width: 100%; max-width: 700px; position: relative; max-height: 90vh; display: flex; flex-direction: column; transform: scale(0.95); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; }
+.modal-content {
+  background-color: var(--bg-dark-secondary);
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 900px; /* <<< INCREASED MAX WIDTH */
+  position: relative;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
 .modal-overlay.visible .modal-content { transform: scale(1); opacity: 1; }
 
 .modal-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); }
