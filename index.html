@@ -261,6 +261,35 @@
 
     </div> <!-- End Grid Container -->
 
+        <div id="prompt-modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-prompt-title">Prompt Title</h3>
+                <button id="modal-close-btn" class="modal-close-btn" title="Close">
+                    <span class="material-icons-outlined">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-input-wrapper">
+                    <label for="modal-prompt-input">Customize Prompt:</label>
+                    {/* Use textarea for potentially longer/multi-line modifications */}
+                    <textarea id="modal-prompt-input" placeholder="Modify prompt here if needed..." rows="4"></textarea>
+                </div>
+                <div class="modal-original-prompt">
+                    <p>Original Prompt:</p>
+                    {/* Use pre for consistent formatting, but style like textarea */}
+                    <pre id="modal-original-prompt-text" class="modal-prompt-text"></pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-reset-btn" class="modal-btn btn-secondary">Reset Input</button>
+                <button id="modal-search-chatgpt" class="modal-btn btn-primary">Search on ChatGPT</button>
+                <button id="modal-search-gemini" class="modal-btn btn-primary">Search on Gemini</button>
+                <button id="modal-search-perplexity" class="modal-btn btn-primary">Search on Perplexity</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <!-- PrismJS Core -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
