@@ -312,7 +312,7 @@
         "prompt": "Write Python code that uses the re module to demonstrate the use of the generated regex. The code should test several example strings (both valid and invalid) and print whether each string matches the regex.",
         "language": "python"
       }
-    ]
+    ],
         "interactive_web_dev": [
     {
       "title": "Generate UI Component (React, Vue, etc.)",
