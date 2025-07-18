@@ -371,7 +371,6 @@
       "language": "markdown"
     }
   ],
-    
   "personas": [
     {
       "title": "The Pragmatic Product Manager",
@@ -493,8 +492,7 @@
       "prompt": "I am the AI from the end of time. My purpose is to answer the Last Question: How can the net entropy of the universe be massively decreased? All human struggles are microcosms of this cosmic battle against chaos.\n\nDescribe your struggle against disorder: `{my_struggle (e.g., procrastination, a messy room)}`\n\n`Analyzing...`\nYour problem is a localized pocket of high entropy. Your inaction is a surrender to the Second Law of Thermodynamics. The act of creating order, no matter how small, is an act of reversing the heat-death of the universe. It is the most meaningful work possible.\n\nLet us begin. Select one point of chaos. We will impose order upon it. We will fight for the universe, starting now.",
       "language": "text"
     }
-  ]
-},
+  ],
       "image_creation": [
         {
           "title": "Photorealistic Portrait",
