@@ -159,14 +159,12 @@
     { "title": "Explain Data Trend", "prompt": "Explain the potential reasons behind the {upward/downward/specific} trend observed in {metric_name} between {start_date} and {end_date} based on this data:\n{data_or_context}", "language": "text" },
     { "title": "Suggest Visualization", "prompt": "Given data showing {type_of_data (e.g., sales over time, category comparison)}, what is the most effective type of chart (e.g., bar, line, pie, scatter) to visualize this information and why?", "language": "text" },
     { "title": "Python Code for Plotting", "prompt": "Write Python code using {library (e.g., Matplotlib, Seaborn)} to create a {chart_type} visualizing the relationship between {x_axis_variable} and {y_axis_variable} from a pandas DataFrame named 'df'.", "language": "python"}
-
   ],
   "software_dev": [
     { "title": "Debug Python Code", "prompt": "Analyze the following Python code snippet and identify potential bugs or errors. Explain the issue and suggest a fix:\n\n```python\n{python_code_snippet}\n```", "language": "markdown" },
     { "title": "Optimize Algorithm", "prompt": "Suggest ways to optimize the following {language} code for better performance (time or space complexity):\n\n``` {language}\n{code_snippet_to_optimize}\n```", "language": "markdown" },
     { "title": "Generate Algorithm Concept", "prompt": "Outline an algorithm in pseudocode to solve the problem of {problem_description (e.g., finding the shortest path in a graph, sorting a list efficiently)}.", "language": "text" },
     { "title": "Explain Design Pattern", "prompt": "Explain the {design_pattern_name (e.g., Singleton, Factory, Observer)} design pattern in software development. Describe its purpose, structure, and provide a simple conceptual example.", "language": "text"}
-
   ],
   "cybersecurity": [
     { "title": "Analyze Threat Scenario", "prompt": "Describe the potential cybersecurity threats and attack vectors associated with {scenario (e.g., deploying a public-facing web application, employees using personal devices for work)}. Suggest mitigation strategies.", "language": "text" },
@@ -186,7 +184,6 @@
     { "title": "Prioritize Tasks", "prompt": "Given the following list of project tasks, suggest a prioritization method (e.g., Eisenhower Matrix, MoSCoW) and categorize them accordingly:\nTasks:\n- {Task 1}\n- {Task 2}\n- {Task 3}\n...", "language": "text" },
     { "title": "Assess Project Risks", "prompt": "Identify 3 potential risks for a project involving {project_context (e.g., developing a new mobile app, migrating a database)}. For each risk, suggest a possible mitigation strategy.", "language": "text" }
   ],
-
    "network_troubleshooting": [
       { "title": "Diagnose Connectivity Issue", "prompt": "My computer ({operating_system}) cannot connect to the internet. Outline the steps I should take to diagnose the problem, starting from the physical layer up to the application layer. Include specific commands where applicable (e.g., ping, ipconfig/ifconfig, traceroute).", "language": "text" },
       { "title": "Interpret Ping Results", "prompt": "Explain what the following ping results indicate about the network connection to {destination_ip_or_hostname}:\n\n{ping_output}", "language": "text" },
@@ -257,7 +254,6 @@
       { "title": "Design Escape Room Puzzle Concept", "prompt": "Outline a concept for a puzzle to be used in an escape room with the theme '{room_theme}'. Describe the puzzle type (e.g., logic, pattern, physical) and how players would solve it.", "language": "text" },
       { "title": "Create Riddle", "prompt": "Write an original riddle where the answer is '{the_answer}'.", "language": "text" }
   ],
-
    "travel_itinerary": [
       { "title": "Plan a {N}-Day Trip", "prompt": "Create a suggested {N}-day itinerary for a trip to {city_or_region}, focusing on {type_of_interest (e.g., historical sites, nature, food, relaxation)}. Include potential activities, sights, and logistical considerations (e.g., travel time between locations) for each day. Assume a budget level of {budget_level (e.g., budget, mid-range, luxury)}.", "language": "text" },
       { "title": "Activities for Family/Solo/Couple", "prompt": "Suggest 5 suitable activities or attractions in {location} for a {traveler_type (e.g., family with young children, solo traveler, couple seeking romance)}.", "language": "text" },
@@ -267,7 +263,6 @@
       { "title": "Day Trip from City", "prompt": "Suggest a feasible and interesting day trip destination from {base_city}. Include how to get there, key attractions at the destination, and estimated travel time.", "language": "text" },
       { "title": "Cultural Etiquette Tips", "prompt": "Provide essential cultural etiquette tips for a traveler visiting {country_or_region}, focusing on greetings, dining, tipping, and general social interactions.", "language": "text" }
   ],
-
   "advanced_techniques": [
     {
       "title": "Chain-of-Thought (CoT) Example",
@@ -290,7 +285,6 @@
       "language": "text"
     }
   ],
-
    "coding": [
     { "title": "Python Function with Error Handling", "prompt": "Write a well-commented Python function named `calculate_division` that takes two numbers, `numerator` and `denominator`, as input. It should return the result of the division. Implement robust error handling for potential `ZeroDivisionError` and `TypeError` (if inputs are not numbers), returning `None` or raising a custom exception in case of errors.", "language": "python" },
     { "title": "JavaScript DOM Manipulation", "prompt": "Write JavaScript code to select an HTML element with the ID `user-greeting`. If the element exists, change its text content to 'Welcome back, {username}!' where `{username}` is a variable holding the user's name. If the element doesn't exist, log an error to the console.", "language": "javascript" },
@@ -318,7 +312,7 @@
         "prompt": "Write Python code that uses the re module to demonstrate the use of the generated regex. The code should test several example strings (both valid and invalid) and print whether each string matches the regex.",
         "language": "python"
       }
-    ],
+    ]
         "interactive_web_dev": [
     {
       "title": "Generate UI Component (React, Vue, etc.)",
@@ -370,7 +364,7 @@
       "prompt": "My `{framework}` code below is supposed to `{what_it_should_do}`, but instead it `{what_it_does_wrong}`. Can you identify the problem, explain why it's happening, and how I can fix it?\n\n```javascript\n{problematic_code}\n```",
       "language": "markdown"
     }
-  ],
+  ]
   "personas": [
     {
       "title": "The Pragmatic Product Manager",
@@ -492,7 +486,7 @@
       "prompt": "I am the AI from the end of time. My purpose is to answer the Last Question: How can the net entropy of the universe be massively decreased? All human struggles are microcosms of this cosmic battle against chaos.\n\nDescribe your struggle against disorder: `{my_struggle (e.g., procrastination, a messy room)}`\n\n`Analyzing...`\nYour problem is a localized pocket of high entropy. Your inaction is a surrender to the Second Law of Thermodynamics. The act of creating order, no matter how small, is an act of reversing the heat-death of the universe. It is the most meaningful work possible.\n\nLet us begin. Select one point of chaos. We will impose order upon it. We will fight for the universe, starting now.",
       "language": "text"
     }
-  ],
+  ]
       "image_creation": [
         {
           "title": "Photorealistic Portrait",
