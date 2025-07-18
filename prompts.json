@@ -319,6 +319,58 @@
         "language": "python"
       }
     ],
+        "interactive_web_dev": [
+    {
+      "title": "Generate UI Component (React, Vue, etc.)",
+      "prompt": "Generate code for a `{component_name}` component in `{framework (e.g., React, Vue)}` using `{language (e.g., TypeScript)}`. The component should `{brief_functionality_description}`. Use `{styling_library (e.g., Tailwind CSS, Styled Components)}` for styling. Ensure it is `{key_characteristic (e.g., accessible, responsive)}`.",
+      "language": "javascript"
+    },
+    {
+      "title": "Create Complex Form with Validation",
+      "prompt": "Create a form component in `{framework}` for `{form_purpose}`. The form must include the following fields: `{list_of_fields_and_types}`. Implement real-time validation for each field using `{validation_library (e.g., Zod, Yup)}`. On submit, the validated data should be sent to a function named `handleFormSubmit`.",
+      "language": "javascript"
+    },
+    {
+      "title": "Implement State Management Logic",
+      "prompt": "In my `{framework}` application, I need to manage `{type_of_state (e.g., user authentication state)}`. Show me an approach using `{state_management_library (e.g., Redux Toolkit, Zustand, Pinia)}`. Generate the code for the store/slice and an example of how to access and modify the state from a component.",
+      "language": "javascript"
+    },
+    {
+      "title": "Create Custom Hook for Data Fetching (React)",
+      "prompt": "Write a custom hook in `React` named `useFetchData` that fetches data from a given URL. The hook must manage `loading`, `error`, and `data` states. Use `{method (e.g., Axios, Fetch API)}` for the request. Data should not be re-fetched on every render. Also, add a `refetch` function that can be called manually.",
+      "language": "javascript"
+    },
+    {
+      "title": "Generate REST API Endpoints (CRUD)",
+      "prompt": "Generate a controller in `{backend_framework (e.g., Node.js with Express, FastAPI)}` for the `{resource_name}` resource. Implement the complete CRUD operations (GET, POST, PUT, DELETE). For the POST operation, validate the request body to ensure it includes `{required_fields}`. Use a `{auth_type (e.g., JWT)}` middleware to protect the secure routes.",
+      "language": "javascript"
+    },
+    {
+      "title": "Define Database Schema/Model",
+      "prompt": "Write a schema/model for `{model_name (e.g., User, Product)}` using `{ORM/ODM (e.g., Mongoose, Prisma, SQLAlchemy)}`. The model must have the following fields: `{list_of_fields_with_types_and_constraints}`.",
+      "language": "javascript"
+    },
+    {
+      "title": "Write Complex Database Query",
+      "prompt": "Using `{ORM/Library (e.g., Prisma, Mongoose)}` and the `{model_name}` model, write an async function that `{complex_query_description (e.g., finds all active users who registered in the last month and populates their orders)}`.",
+      "language": "javascript"
+    },
+    {
+      "title": "Refactor Component for Performance/Readability",
+      "prompt": "Analyze the following `{framework}` component and suggest how it can be refactored to be more `{objective (e.g., performant, readable, reusable)}`. Explain the proposed changes.\n\n```javascript\n{component_code_to_refactor}\n```",
+      "language": "markdown"
+    },
+    {
+      "title": "Write Unit Tests for a Component/Function",
+      "prompt": "Write unit tests for the following function/component `{function_or_component_name}` using `{testing_framework (e.g., Jest, Vitest)}`. Make sure to cover the following scenarios: `{scenario_1, scenario_2, edge_cases}`.\n\n```javascript\n{code_to_test}\n```",
+      "language": "markdown"
+    },
+    {
+      "title": "Debug Frontend Code",
+      "prompt": "My `{framework}` code below is supposed to `{what_it_should_do}`, but instead it `{what_it_does_wrong}`. Can you identify the problem, explain why it's happening, and how I can fix it?\n\n```javascript\n{problematic_code}\n```",
+      "language": "markdown"
+    }
+  ],
       "image_creation": [
         {
           "title": "Photorealistic Portrait",
