@@ -16,7 +16,7 @@ export const usePrompts = (): UsePromptsReturn => {
         const fetchPrompts = async () => {
             try {
                 setLoading(true);
-                const response = await fetch('/prompts.json');
+                const response = await fetch(`${import.meta.env.BASE_URL}prompts.json`);
                 if (!response.ok) {
                     throw new Error(`Failed to fetch prompts: ${response.statusText}`);
                 }
