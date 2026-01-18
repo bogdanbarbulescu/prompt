@@ -51,7 +51,6 @@ const PromptList: React.FC<PromptListProps> = ({
                         <PromptCard
                             key={`${prompt.title}-${index}`}
                             prompt={prompt}
-                            category={category}
                             isFavorite={isFavorite?.(promptId) ?? false}
                             onToggleFavorite={
                                 onToggleFavorite ? () => onToggleFavorite(prompt, category) : undefined

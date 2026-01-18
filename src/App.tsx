@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { usePrompts } from './hooks/usePrompts';
 import { useSearch } from './hooks/useSearch';
 import { useFavorites } from './hooks/useFavorites';

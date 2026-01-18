@@ -5,7 +5,6 @@ import './PromptCard.css';
 
 interface PromptCardProps {
     prompt: Prompt;
-    category?: string;
     isFavorite?: boolean;
     onToggleFavorite?: () => void;
     onCopy?: () => void;
@@ -18,7 +17,6 @@ const hasVariables = (text: string): boolean => {
 
 const PromptCard: React.FC<PromptCardProps> = ({
     prompt,
-    category,
     isFavorite = false,
     onToggleFavorite,
     onCopy,

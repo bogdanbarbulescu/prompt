@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Prompt, PromptsData } from '../types/prompts';
 
 interface UseSearchReturn {
