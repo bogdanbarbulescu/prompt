@@ -86,15 +86,16 @@ const PromptCard: React.FC<PromptCardProps> = ({
                 </div>
             </div>
 
-            <VariableFillModal
-                prompt={prompt}
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                onCopy={handleModalCopy}
-            />
+            {isModalOpen && (
+                <VariableFillModal
+                    prompt={prompt}
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    onCopy={handleModalCopy}
+                />
+            )}
         </>
     );
 };
 
 export default PromptCard;
-
